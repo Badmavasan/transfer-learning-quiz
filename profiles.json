@@ -1,0 +1,77 @@
+{
+  "_about": "AI-literacy profiles. The 3-letter key encodes strength (H=high, L=low) in General/Technique/Éthique, in that order. A participant is 'High' in a rubric when they answered more than half of its questions correctly. Each profile has a fun persona name + description in English and French. Edit freely.",
+  "profiles": {
+    "LLL": {
+      "emoji": "🐣",
+      "name": { "en": "The AI Hatchling", "fr": "Le Poussin de l'IA" },
+      "tagline": { "en": "Just cracked the shell.", "fr": "Vient de sortir de l'œuf." },
+      "description": {
+        "en": "You've just cracked the shell and the world of AI is shiny, loud and a little confusing. Buzzwords fly over your head, the wiring is a mystery and the ethics debates sound like adults talking. But every legend started as a fluffy little chick — bring snacks, it's going to be a fun climb. 🐣",
+        "fr": "Vous venez de sortir de l'œuf et le monde de l'IA est brillant, bruyant et un brin déroutant. Les buzzwords vous passent au-dessus de la tête, la mécanique reste un mystère et les débats éthiques ressemblent à une conversation d'adultes. Mais toute légende a commencé en poussin tout doux — prévoyez des graines, l'ascension va être sympa. 🐣"
+      }
+    },
+    "HLL": {
+      "emoji": "🦜",
+      "name": { "en": "The Buzzword Parrot", "fr": "Le Perroquet à Buzzwords" },
+      "tagline": { "en": "Talks the talk.", "fr": "Maîtrise le vocabulaire." },
+      "description": {
+        "en": "You can drop \"generative\", \"LLM\" and \"prompt\" into a sentence and sound like the smartest person at the party. The big picture? Crystal clear. How the engine actually works and whether it's fair? Eh, details, details. Squawk proudly — you know your stuff at 30,000 feet. 🦜",
+        "fr": "Vous placez \"génératif\", \"LLM\" et \"prompt\" dans une phrase et vous passez pour la personne la plus brillante de la soirée. La vue d'ensemble ? Limpide. Comment le moteur tourne vraiment et s'il est équitable ? Bah, des détails. Gonflez les plumes — vous brillez à 10 000 mètres d'altitude. 🦜"
+      }
+    },
+    "LHL": {
+      "emoji": "🔧",
+      "name": { "en": "The Mad Tinkerer", "fr": "Le Bricoleur Fou" },
+      "tagline": { "en": "Loves the gears.", "fr": "Adore les rouages." },
+      "description": {
+        "en": "Tokens, RAG, zero-shot — you love poking at the wires and you know exactly how the engine roars. Just... you sometimes forget to look up and check whether anyone's standing in the road, or what all this means for the rest of the world. Brilliant mechanic, future visionary. 🔧",
+        "fr": "Tokens, RAG, zero-shot — vous adorez tripoter les câbles et vous savez exactement comment le moteur rugit. Seulement... vous oubliez parfois de lever les yeux pour voir si quelqu'un traverse la route, ou ce que tout ça veut dire pour le reste du monde. Mécanicien brillant, futur visionnaire. 🔧"
+      }
+    },
+    "LLH": {
+      "emoji": "🧭",
+      "name": { "en": "The Moral Compass", "fr": "La Boussole Morale" },
+      "tagline": { "en": "Asks the right questions.", "fr": "Pose les bonnes questions." },
+      "description": {
+        "en": "Your ethics radar is razor sharp. Bias, privacy, copyright, deepfakes — you smell trouble a mile away. You might not know what a token is yet, but you're the first to raise your hand and ask \"sure, we can... but should we?\" The world badly needs more of you. 🧭",
+        "fr": "Votre radar éthique est ultra-affûté. Biais, vie privée, droit d'auteur, deepfakes — vous flairez les ennuis à des kilomètres. Vous ne savez peut-être pas encore ce qu'est un token, mais vous êtes le premier à lever la main et demander \"d'accord, on peut... mais devrait-on ?\". Le monde a cruellement besoin de gens comme vous. 🧭"
+      }
+    },
+    "HHL": {
+      "emoji": "🏎️",
+      "name": { "en": "The Helmetless Engineer", "fr": "L'Ingénieur Sans Casque" },
+      "tagline": { "en": "Builds fast.", "fr": "Construit vite." },
+      "description": {
+        "en": "You get the big picture AND you know how to build the thing — fast, clever, no hesitation. Brakes, seatbelts and the fine print on ethics? \"I'll read the manual later... probably.\" You're a powerhouse; just grab a helmet before the next lap. 🏎️",
+        "fr": "Vous avez la vue d'ensemble ET vous savez construire le truc — vite, malin, sans hésiter. Les freins, la ceinture et les petites lignes sur l'éthique ? \"Je lirai le manuel plus tard... sûrement.\" Vous êtes une machine de guerre ; attrapez juste un casque avant le prochain tour. 🏎️"
+      }
+    },
+    "HLH": {
+      "emoji": "🦉",
+      "name": { "en": "The Plugged-in Philosopher", "fr": "Le Philosophe Branché" },
+      "tagline": { "en": "Big picture, big heart.", "fr": "Grande vision, grand cœur." },
+      "description": {
+        "en": "Big-picture thinker with a conscience. You see where AI is heading and whether it should go there at all. The deep technical guts — tokens, RAG, training loops — aren't your jam yet, and that's fine. You ask the questions that make engineers pause. Wise old owl energy. 🦉",
+        "fr": "Penseur de la vue d'ensemble, avec une conscience. Vous voyez où va l'IA et si elle devrait vraiment y aller. Les entrailles techniques — tokens, RAG, boucles d'entraînement — ce n'est pas encore votre truc, et ce n'est pas grave. Vous posez les questions qui font hésiter les ingénieurs. Énergie de vieux hibou sage. 🦉"
+      }
+    },
+    "LHH": {
+      "emoji": "🥷",
+      "name": { "en": "The Virtuous Hacker", "fr": "Le Hacker Vertueux" },
+      "tagline": { "en": "Builds it, and knows if you should.", "fr": "Le construit, et sait s'il faut le faire." },
+      "description": {
+        "en": "Deep in the code, strong in the heart. You can build the thing AND tell whether building it is a good idea. You're missing a few headlines and bits of general trivia, but honestly? Tech skill plus a conscience is the rarest combo in the game. Quiet, deadly, principled. 🥷",
+        "fr": "Au fond du code, solide dans le cœur. Vous savez construire le truc ET dire si c'est une bonne idée de le construire. Il vous manque quelques actus et anecdotes de culture générale, mais franchement ? Compétence technique plus conscience, c'est la combinaison la plus rare du jeu. Discret, redoutable, intègre. 🥷"
+      }
+    },
+    "HHH": {
+      "emoji": "🧙",
+      "name": { "en": "The Algorithm Sage", "fr": "Le Sage de l'Algorithme" },
+      "tagline": { "en": "Master of all three.", "fr": "Maître des trois rubriques." },
+      "description": {
+        "en": "General savvy, technical muscle and an ethical backbone — you've got the full trinity. You understand what AI is, how it actually works, and what it does to the world. This is the one the council summons when things get serious. Bow before the wizard. 🧙",
+        "fr": "Culture générale, muscle technique et colonne vertébrale éthique — vous avez la trinité complète. Vous comprenez ce qu'est l'IA, comment elle fonctionne réellement, et ce qu'elle fait au monde. C'est vous que le conseil convoque quand ça devient sérieux. Inclinez-vous devant le magicien. 🧙"
+      }
+    }
+  }
+}

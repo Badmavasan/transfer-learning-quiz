@@ -1,0 +1,31 @@
+# Production reverse-proxy snippet for badmavasan.tech
+# Serves the AI Literacy quiz under https://badmavasan.tech/ai-literacy-quiz/
+#
+# Paste these two location blocks inside your existing `server { ... }` block
+# (the one that terminates TLS for badmavasan.tech). The app's own frontend
+# container must be published on the host — docker-compose maps it to :8080.
+
+# Redirect the bare path to the trailing-slash form. This is REQUIRED:
+# the frontend resolves assets and /api calls relative to the page URL, so the
+# browser must see ".../ai-literacy-quiz/" (with the slash) as the base.
+location = /ai-literacy-quiz {
+    return 301 /ai-literacy-quiz/;
+}
+
+location /ai-literacy-quiz/ {
+    # Trailing slash on proxy_pass strips the "/ai-literacy-quiz/" prefix, so the
+    # container keeps serving at its own root and needs NO internal changes.
+    #   /ai-literacy-quiz/            -> container /            (index.html)
+    #   /ai-literacy-quiz/styles.css -> container /styles.css
+    #   /ai-literacy-quiz/api/save   -> container /api/save     (-> backend)
+    proxy_pass http://127.0.0.1:8080/;
+
+    proxy_http_version 1.1;
+    proxy_set_header Host              $host;
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # Mouse-tracking payloads can be a few MB.
+    client_max_body_size 8m;
+}

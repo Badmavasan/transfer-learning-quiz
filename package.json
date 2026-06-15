@@ -1,0 +1,16 @@
+{
+  "name": "ai-literacy-platform",
+  "version": "1.0.0",
+  "description": "Bilingual (EN/FR) AI-literacy questionnaire with mouse tracking, reusable participant codes, and fun result personas.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "pg": "^8.11.5"
+  },
+  "license": "MIT"
+}
