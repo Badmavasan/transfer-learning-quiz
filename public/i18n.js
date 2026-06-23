@@ -5,12 +5,12 @@ window.I18N = {
     footer: 'AI Literacy scientific study · anonymous · mouse & timing recorded · data stored in France and deleted after the study.',
 
     // Welcome
-    welcome_title: 'How AI-literate are you, really? 🤖',
-    welcome_lead: 'A short, playful quiz about Artificial Intelligence — and a fun persona waiting for you at the end.',
-    welcome_desc_1: 'You will answer about twenty multiple-choice questions split into three themes: General Knowledge, Technical, and Ethics & Society. There are no trick scores and nothing to revise — just answer honestly.',
-    welcome_desc_2: 'This is a scientific research study. While you answer, we record your mouse movements and the time you spend on each question. Everything is anonymous: we never ask for your email, and you are identified only by a random code.',
-    welcome_privacy: 'Your data is collected solely for this scientific study, stored securely in France, and permanently deleted once the research is complete. Any questions? Contact {email}.',
-    welcome_desc_3: 'At the end you unlock your AI-literacy persona. Will you be the Algorithm Sage 🧙, the Buzzword Parrot 🦜, or the Mad Tinkerer 🔧?',
+    welcome_title: 'How well do you know AI? 🤖',
+    welcome_lead: 'A short, fun quiz about Artificial Intelligence (AI) — discover your persona at the end!',
+    welcome_desc_1: 'You will answer 20 multiple-choice questions split into 3 themes: General Knowledge, Technical, and Ethics & Society. It should take you about 10 minutes. There are no trick scores and nothing to revise — just answer honestly.',
+    welcome_desc_2: 'This is a nationwide scientific research study, run with French schools and universities. While you answer, we record your mouse movements and the time you spend on each question. Everything is anonymous: we never ask for your email, and you are identified only by a random code.',
+    welcome_privacy: 'Your data is collected solely for this scientific study, stored securely in France, and permanently deleted once the research is complete. You can ask to access, modify or delete your data at any time. Any questions? Contact {email}.',
+    welcome_desc_3: 'At the end you unlock your AI-familiarity persona. Will you be the Algorithm Sage 🧙, the Buzzword Parrot 🦜, or the Mad Tinkerer 🔧?',
     welcome_ack: 'I have read the above and I agree to take part.',
     welcome_start: 'Get my code & start →',
     welcome_or: 'Already have a code?',
@@ -27,17 +27,15 @@ window.I18N = {
     code_continue: 'Continue →',
 
     // Info
-    info_title: 'First, a little about you',
-    info_lead: 'This helps us understand who is taking the quiz. Nothing here identifies you personally.',
-    info_first: 'First name',
-    info_last: 'Last name',
+    info_title: 'Finally, a little about you',
+    info_lead: 'This helps us understand who took the quiz. Nothing here identifies you personally.',
     info_age: 'Age',
     info_level: 'What are you studying right now?',
     info_level_choose: 'Choose…',
-    info_filiere: 'Which field / filière are you in?',
+    info_filiere: 'Your field / options (optional)',
     info_filiere_ph: 'e.g. Computer Science, Law, Biology…',
-    info_next: 'Start the quiz →',
-    info_required: 'Please fill in all the fields.',
+    info_next: 'See my persona →',
+    info_required: 'Please fill in your age and level.',
 
     level_highschool: 'High school',
     level_license: "Bachelor's / Licence",
@@ -49,7 +47,7 @@ window.I18N = {
 
     // Rubric overview
     overview_title: 'Three themes, one you 🎯',
-    overview_lead: 'The quiz is split into three rubrics. You\'ll go through them one at a time, and within each one the questions appear in a random order.',
+    overview_lead: 'The quiz is split into three rubrics. You\'ll go through them one at a time, and within each one the questions appear in a random order. One answer per question, and please don\'t use AI to answer for you — we want to measure what you really know.',
     overview_start: 'Let\'s go →',
     overview_questions: 'questions',
 
@@ -66,7 +64,7 @@ window.I18N = {
     q_pick: 'Pick an answer to continue.',
 
     // Result
-    result_kicker: 'Your AI-literacy persona is…',
+    result_kicker: 'Your AI-familiarity persona is…',
     result_scores: 'Your scores',
     result_total: 'Overall',
     result_again: 'See my code again',
@@ -81,12 +79,12 @@ window.I18N = {
     brand: 'Littératie IA',
     footer: "Étude scientifique sur la littératie en IA · anonyme · souris et temps enregistrés · données stockées en France et supprimées après l'étude.",
 
-    welcome_title: 'Quel est votre vrai niveau en IA ? 🤖',
-    welcome_lead: "Un petit quiz ludique sur l'intelligence artificielle — et un profil amusant qui vous attend à la fin.",
-    welcome_desc_1: "Vous répondrez à une vingtaine de questions à choix multiples réparties en trois thèmes : Culture générale, Technique, et Éthique & société. Aucune note piège, rien à réviser — répondez simplement honnêtement.",
-    welcome_desc_2: "Il s'agit d'une étude scientifique. Pendant que vous répondez, nous enregistrons vos mouvements de souris et le temps passé sur chaque question. Tout est anonyme : nous ne demandons jamais votre e-mail, vous êtes identifié uniquement par un code aléatoire.",
-    welcome_privacy: "Vos données sont collectées uniquement pour cette étude scientifique, stockées de manière sécurisée en France, et définitivement supprimées une fois la recherche terminée. Une question ? Contactez {email}.",
-    welcome_desc_3: "À la fin, vous débloquez votre profil de littératie en IA. Serez-vous le Sage de l'Algorithme 🧙, le Perroquet à Buzzwords 🦜, ou le Bricoleur Fou 🔧 ?",
+    welcome_title: "Connaissez-vous l'IA ? 🤖",
+    welcome_lead: "Un petit quiz amusant sur l'intelligence artificielle (IA) — découvrez votre profil à la fin !",
+    welcome_desc_1: "Vous répondrez à 20 questions à choix multiples réparties en 3 thèmes : Culture générale, Technique, et Éthique & société. Cela devrait vous prendre environ 10 minutes. Aucune note piège, rien à réviser — répondez simplement honnêtement.",
+    welcome_desc_2: "Il s'agit d'une étude scientifique à l'échelle nationale, menée auprès des écoles et universités françaises. Pendant que vous répondez, nous enregistrons vos mouvements de souris et le temps passé sur chaque question. Tout est anonyme : nous ne demandons jamais votre e-mail, vous êtes identifié uniquement par un code aléatoire.",
+    welcome_privacy: "Vos données sont collectées uniquement pour cette étude scientifique, stockées de manière sécurisée en France, et définitivement supprimées une fois la recherche terminée. Vous pouvez demander à accéder, modifier ou supprimer vos données à tout moment. Une question ? Contactez {email}.",
+    welcome_desc_3: "À la fin, vous débloquez votre profil de familiarité avec l'IA. Serez-vous le Sage de l'Algorithme 🧙, le Perroquet à Buzzwords 🦜, ou le Bricoleur Fou 🔧 ?",
     welcome_ack: "J'ai lu ce qui précède et j'accepte de participer.",
     welcome_start: 'Obtenir mon code & commencer →',
     welcome_or: 'Vous avez déjà un code ?',
@@ -101,17 +99,15 @@ window.I18N = {
     code_copied: 'Copié !',
     code_continue: 'Continuer →',
 
-    info_title: "D'abord, un peu à propos de vous",
-    info_lead: "Cela nous aide à comprendre qui passe le quiz. Rien ici ne vous identifie personnellement.",
-    info_first: 'Prénom',
-    info_last: 'Nom',
+    info_title: "Pour finir, un peu à propos de vous",
+    info_lead: "Cela nous aide à comprendre qui a passé le quiz. Rien ici ne vous identifie personnellement.",
     info_age: 'Âge',
     info_level: "Que faites-vous comme études actuellement ?",
     info_level_choose: 'Choisir…',
-    info_filiere: 'Dans quelle filière êtes-vous ?',
+    info_filiere: 'Votre filière / vos options (facultatif)',
     info_filiere_ph: 'ex. Informatique, Droit, Biologie…',
-    info_next: 'Commencer le quiz →',
-    info_required: 'Veuillez remplir tous les champs.',
+    info_next: 'Voir mon profil →',
+    info_required: 'Veuillez renseigner votre âge et votre niveau.',
 
     level_highschool: 'Lycée',
     level_license: 'Licence',
@@ -122,7 +118,7 @@ window.I18N = {
     level_other: 'Autre',
 
     overview_title: 'Trois thèmes, un seul vous 🎯',
-    overview_lead: "Le quiz est divisé en trois rubriques. Vous les parcourez une par une, et à l'intérieur de chacune les questions apparaissent dans un ordre aléatoire.",
+    overview_lead: "Le quiz est divisé en trois rubriques. Vous les parcourez une par une, et à l'intérieur de chacune les questions apparaissent dans un ordre aléatoire. Une seule réponse possible par question, et merci de ne pas utiliser d'IA pour répondre à votre place — nous voulons mesurer ce que vous savez vraiment.",
     overview_start: "C'est parti →",
     overview_questions: 'questions',
 
@@ -136,7 +132,7 @@ window.I18N = {
     q_finish: 'Voir mon profil →',
     q_pick: 'Choisissez une réponse pour continuer.',
 
-    result_kicker: 'Votre profil de littératie en IA est…',
+    result_kicker: "Votre profil de familiarité avec l'IA est…",
     result_scores: 'Vos scores',
     result_total: 'Total',
     result_again: 'Revoir mon code',

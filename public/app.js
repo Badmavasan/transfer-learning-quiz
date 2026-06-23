@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------- state
 const App = {
-  lang: localStorage.getItem('lang') || 'en',
+  lang: localStorage.getItem('lang') || 'fr',
   code: null,
   bootstrap: null,       // { rubrics, rubricOrder, questions }
   info: null,
@@ -165,10 +165,10 @@ function resumeFrom(p) {
   if (p.lang) { App.lang = p.lang; localStorage.setItem('lang', p.lang); applyLangButtons(); }
   if (p.completed) { return showStoredResult(); }
   buildFlow();
-  if (!p.info) return screenInfo();
   // Resume at the first unanswered question (or overview if none answered yet).
   const firstUnanswered = App.flow.findIndex((s) => s.type === 'question' && !App.answers[s.q.id]);
-  if (firstUnanswered === -1) { return finishQuiz(); }
+  // All questions answered: collect demographics (asked last) if missing, else finish.
+  if (firstUnanswered === -1) { return App.info ? finishQuiz() : screenInfo(); }
   // Jump to the rubric-intro preceding that question for context.
   let i = firstUnanswered;
   while (i > 0 && App.flow[i - 1].type !== 'rubric-intro') i--;
@@ -193,7 +193,7 @@ function screenCode() {
     const b = document.getElementById('copy');
     b.textContent = t('code_copied'); setTimeout(() => (b.textContent = t('code_copy')), 1500);
   };
-  document.getElementById('cont').onclick = () => screenInfo();
+  document.getElementById('cont').onclick = () => { buildFlow(); screenOverview(); };
 }
 
 function screenInfo(errKey) {
@@ -205,12 +205,6 @@ function screenInfo(errKey) {
       <p class="lead">${esc(t('info_lead'))}</p>
       <form id="infoForm" class="form" autocomplete="off">
         <div class="grid2">
-          <label class="field"><span>${esc(t('info_first'))}</span>
-            <input type="text" name="first" value="${esc(info.first || '')}" required /></label>
-          <label class="field"><span>${esc(t('info_last'))}</span>
-            <input type="text" name="last" value="${esc(info.last || '')}" required /></label>
-        </div>
-        <div class="grid2">
           <label class="field"><span>${esc(t('info_age'))}</span>
             <input type="number" name="age" min="5" max="120" value="${esc(info.age || '')}" required /></label>
           <label class="field"><span>${esc(t('info_level'))}</span>
@@ -220,7 +214,7 @@ function screenInfo(errKey) {
             </select></label>
         </div>
         <label class="field"><span>${esc(t('info_filiere'))}</span>
-          <input type="text" name="filiere" placeholder="${esc(t('info_filiere_ph'))}" value="${esc(info.filiere || '')}" required /></label>
+          <input type="text" name="filiere" placeholder="${esc(t('info_filiere_ph'))}" value="${esc(info.filiere || '')}" /></label>
         ${errKey ? `<p class="err">${esc(t(errKey))}</p>` : ''}
         <button class="btn primary big" type="submit">${esc(t('info_next'))}</button>
       </form>
@@ -230,17 +224,14 @@ function screenInfo(errKey) {
     e.preventDefault();
     const fd = new FormData(e.target);
     const info = {
-      first: (fd.get('first') || '').trim(),
-      last: (fd.get('last') || '').trim(),
       age: (fd.get('age') || '').toString().trim(),
       level: fd.get('level') || '',
       filiere: (fd.get('filiere') || '').trim(),
     };
-    if (!info.first || !info.last || !info.age || !info.level || !info.filiere) return screenInfo('info_required');
+    if (!info.age || !info.level) return screenInfo('info_required');
     App.info = info;
-    await save({ info, step: 'overview' });
-    buildFlow();
-    screenOverview();
+    await save({ info, step: 'result' });
+    finishQuiz();
   };
 }
 
@@ -272,7 +263,8 @@ function screenOverview() {
 function renderFlow() {
   Mouse.stop();
   const step = App.flow[App.flowIndex];
-  if (!step) return finishQuiz();
+  // End of the quiz: ask the demographic questions last, then finish.
+  if (!step) return App.info ? finishQuiz() : screenInfo();
   if (step.type === 'rubric-intro') return screenRubricIntro(step);
   return screenQuestion(step);
 }

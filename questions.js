@@ -18,8 +18,8 @@ const RUBRICS = {
     key: 'technique',
     label: { en: 'Technical', fr: 'Technique' },
     blurb: {
-      en: 'Under the hood: tokens, prompting, RAG and how models actually work.',
-      fr: "Sous le capot : tokens, prompts, RAG et le fonctionnement réel des modèles.",
+      en: 'Under the hood: tokens, prompting and how models actually work.',
+      fr: "Sous le capot : tokens, prompts et le fonctionnement réel des modèles.",
     },
     emoji: '⚙️',
   },
@@ -27,8 +27,8 @@ const RUBRICS = {
     key: 'ethique',
     label: { en: 'Ethics & Society', fr: 'Éthique & société' },
     blurb: {
-      en: 'The tricky stuff: bias, privacy, copyright, deepfakes and the law.',
-      fr: "Le terrain glissant : biais, vie privée, droit d'auteur, deepfakes et la loi.",
+      en: 'The tricky stuff: bias, privacy, copyright, disinformation and the law.',
+      fr: "Le terrain glissant : biais, vie privée, droit d'auteur, désinformation et la loi.",
     },
     emoji: '⚖️',
   },
@@ -66,7 +66,7 @@ const QUESTIONS = [
     id: 'q3', rubric: 'general', difficulty: 2, correct: 'D',
     q: {
       en: 'Which of the following tasks can Generative AI perform with a high degree of accuracy?',
-      fr: 'Quelle tâche peut être réalisée avec un haut degré de précision par des IA génératives ?',
+      fr: 'Quelle tâche peut être réalisée avec un suffisamment haut degré de précision par des IA génératives ?',
     },
     options: [
       { key: 'A', en: 'Predicting stock market trends.', fr: "Prédire l'évolution de la bourse." },
@@ -126,7 +126,7 @@ const QUESTIONS = [
       { key: 'A', en: 'The language model can only generate binary outputs.', fr: "Les modèles de langage ne génèrent que des réponses binaires." },
       { key: 'B', en: 'The need for extensive labelled data to train the model.', fr: "Le besoin d'un grand nombre de données étiquetées pour entraîner le modèle." },
       { key: 'C', en: 'Crafting a prompt that accurately captures the desired context and nuances.', fr: "Définir un prompt qui capture précisément le contexte désiré et les nuances." },
-      { key: 'D', en: 'The requirement for complex feature engineering.', fr: "Le besoin d'une ingénierie complexe." },
+      { key: 'D', en: 'The requirement for complex feature engineering.', fr: "Le besoin de concevoir manuellement des caractéristiques complexes." },
     ],
   },
   {
@@ -145,11 +145,11 @@ const QUESTIONS = [
   {
     id: 'q12', rubric: 'technique', difficulty: 2, correct: 'B',
     q: {
-      en: 'Your school built a chatbot on its student portal to answer various questions, but it regularly gives outdated information about timetables. What is the best strategy to fix this?',
-      fr: "Votre établissement scolaire a développé un chatbot sur l'ENT qui répond à diverses questions, mais il donne régulièrement des informations obsolètes par rapport aux emplois du temps. Quelle est la meilleure stratégie pour résoudre ce problème ?",
+      en: 'Your school built a chatbot to answer various questions, but it regularly gives unsuitable information about timetables. What is the best strategy to fix this?',
+      fr: "Votre établissement scolaire a développé un chatbot qui répond à diverses questions, mais il donne régulièrement des informations inadaptées par rapport aux emplois du temps. Quelle est la meilleure stratégie pour résoudre ce problème ?",
     },
     options: [
-      { key: 'A', en: 'Set up a tool with which students can flag this outdated information when it appears.', fr: "Mettre en place un outil avec lequel les étudiants pourront signaler ces informations obsolètes lorsqu'elles se manifestent." },
+      { key: 'A', en: 'Set up a tool with which students can flag this unsuitable information when it appears.', fr: "Mettre en place un outil avec lequel les étudiants pourront signaler ces informations inadaptées lorsqu'elles se manifestent." },
       { key: 'B', en: "Schedule regular updates of the chatbot's training data to include the latest timetable changes.", fr: "Mettre en place des mises à jour régulières des données d'entraînement du chatbot pour inclure les dernières modifications des emplois du temps." },
       { key: 'C', en: 'Set up a system that escalates timetable questions to humans.', fr: "Mettre en place un système qui permet de faire remonter à des humains les questions concernant l'emploi du temps." },
       { key: 'D', en: "Evaluate the chatbot's performance to identify areas for improvement.", fr: "Évaluer les performances du chatbot pour identifier des axes d'amélioration." },
@@ -212,8 +212,8 @@ const QUESTIONS = [
   {
     id: 'qL1', rubric: 'ethique', difficulty: 1, correct: 'A',
     q: {
-      en: '(Legal - level 1) What is the general objective of the European regulation on AI systems (AI Act 2024)?',
-      fr: "(Légal - niveau 1) Quel est l'objectif général du Règlement européen sur les systèmes d'IA (AI Act 2024) ?",
+      en: 'What is the general objective of the European regulation on AI systems (AI Act 2024)?',
+      fr: "Quel est l'objectif général du Règlement européen sur les systèmes d'IA (AI Act 2024) ?",
     },
     options: [
       { key: 'A', en: 'To frame AI so that it is safe, transparent and respectful of fundamental rights.', fr: "Encadrer l'IA afin qu'elle soit sûre, transparente et respectueuse des droits fondamentaux." },
@@ -225,8 +225,8 @@ const QUESTIONS = [
   {
     id: 'q16', rubric: 'ethique', difficulty: 1, correct: 'C',
     q: {
-      en: 'As a student using an LLM to gather information for an assignment, how should you approach the information it provides?',
-      fr: "En tant qu'étudiant utilisant un grand modèle de langage pour récolter des informations pour un devoir, comment devriez-vous appréhender les informations que le modèle vous fournit ?",
+      en: 'As a student using a large language model (LLM) to gather information for an assignment, how should you relate to the information it generates?',
+      fr: "En tant qu'étudiant utilisant un grand modèle de langage (LLM) pour récolter des informations pour un devoir, comment devriez-vous vous rapporter aux informations que le modèle génère ?",
     },
     options: [
       { key: 'A', en: "The LLM's answers are always more trustworthy than anything on the internet, so you can use them without further checking.", fr: "La réponse d'un LLM sera toujours plus fiable que les informations trouvables sur internet, donc vous pouvez les utiliser sans plus de vérification." },
@@ -242,7 +242,7 @@ const QUESTIONS = [
       fr: "Une IA générative a réalisé un résumé d'un article scientifique déclarant : \"l'étude a trouvé qu'un temps d'écran prolongé est directement corrélé avec une baisse de l'attention chez les enfants de 8-12 ans.\" Quelle est la prochaine étape ?",
     },
     options: [
-      { key: 'A', en: 'Accept the summary as accurate because AI tools are generally reliable.', fr: "Valider le résumé car les IA sont généralement fiables." },
+      { key: 'A', en: 'Accept the summary directly as accurate because AI tools are generally reliable.', fr: "Valider directement le résumé car les IA sont généralement fiables." },
       { key: 'B', en: "Ask the AI to provide more details about the study's methodology and results.", fr: "Demander à l'IA davantage de détails sur la méthode et les résultats de l'étude." },
       { key: 'C', en: 'Cross-check the summary with the original research paper.', fr: "Vérifier les informations avec l'article scientifique directement." },
       { key: 'D', en: 'Use another AI tool to generate a summary for comparison and evaluate the consistency between both.', fr: "Utiliser une autre IA pour générer un résumé afin de les comparer et de vérifier la cohérence entre les deux." },
@@ -255,7 +255,7 @@ const QUESTIONS = [
       fr: "Lorsqu'un système d'IA générative est utilisé pour sélectionner des candidatures, quelle problématique probable concerne la qualité et l'impartialité des décisions de recrutement ?",
     },
     options: [
-      { key: 'A', en: "The AI system might overlook applicants' unique achievements and extracurricular activities.", fr: "Le système d'IA peut négliger les compétences uniques des candidats et les activités extrascolaires." },
+      { key: 'A', en: "The AI system cannot analyze applicants' unique achievements and extracurricular activities.", fr: "Le système d'IA n'a pas la capacité d'analyser les compétences uniques des candidats et les activités extrascolaires." },
       { key: 'B', en: 'The AI system could misinterpret minor formatting differences in resumes.', fr: "Le système d'IA peut mal interpréter les différences mineures de mise en forme dans les CV." },
       { key: 'C', en: 'The AI system might not effectively handle applications submitted in various languages.', fr: "Le système d'IA peut ne pas prendre en compte des candidatures soumises dans différentes langues." },
       { key: 'D', en: 'The AI system could reinforce existing biases found in historical hiring data.', fr: "Le système d'IA peut renforcer les biais présents dans les données de recrutement sur lesquelles il est entraîné." },
@@ -264,12 +264,12 @@ const QUESTIONS = [
   {
     id: 'q23', rubric: 'ethique', difficulty: 2, correct: 'A',
     q: {
-      en: 'Imagine generating an AI image to illustrate your slides for an oral presentation. Can this use raise copyright issues?',
-      fr: "Imaginez générer une image par IA pour illustrer votre diaporama pour un oral. Est-ce que cet usage peut soulever des problématiques de droit d'auteur ?",
+      en: 'You generate an AI image to illustrate your slides for an oral presentation. Can this use raise copyright issues?',
+      fr: "Vous générez une image par IA pour illustrer votre diaporama pour un oral. Est-ce que cet usage peut soulever des problématiques de droit d'auteur ?",
     },
     options: [
       { key: 'A', en: 'Yes, AI-generated images can draw on the style of artists whose works — though protected by copyright — were used to train the models.', fr: "Oui, les images générées par IA peuvent s'inspirer du style d'artistes dont les créations, pourtant protégées par le droit des créateurs, ont été utilisées pour entraîner les modèles." },
-      { key: 'B', en: "Yes, and it is even possible to trace back to the model's training data from the content it generates.", fr: "Oui, il est d'ailleurs possible de remonter aux données d'entraînement du modèle à partir des productions qu'il génère." },
+      { key: 'B', en: "Yes, and it is even always possible to trace back to the model's training data from the content it generates.", fr: "Oui, il est d'ailleurs toujours possible de remonter aux données d'entraînement du modèle à partir des productions qu'il génère." },
       { key: 'C', en: 'No, all the images used to train the AI are copyright-free.', fr: "Non, toutes les images qui ont servi à l'entraînement de l'IA sont libres de droit." },
       { key: 'D', en: 'No, AI outputs are original and cannot be considered counterfeits.', fr: "Non, les productions d'IA sont originales et ne peuvent pas être considérées comme des contrefaçons." },
     ],
@@ -290,8 +290,8 @@ const QUESTIONS = [
   {
     id: 'qL2', rubric: 'ethique', difficulty: 3, correct: 'B',
     q: {
-      en: '(Legal - level 2) Which principle mainly structures the European AI Act?',
-      fr: "(Légal - niveau 2) Quel principe structure principalement l'AI Act européen ?",
+      en: 'Which principle mainly structures the European regulation on AI systems (AI Act 2024)?',
+      fr: "Quel principe structure principalement le Règlement européen sur les systèmes d'IA (AI Act 2024) ?",
     },
     options: [
       { key: 'A', en: 'A total ban on AI deployed for commercial purposes.', fr: "Une interdiction totale de l'IA déployée à des fins commerciales." },
