@@ -45,6 +45,19 @@ Set `DATABASE_URL` to use Postgres instead, e.g.:
 DATABASE_URL=postgres://app:app@localhost:5432/ailit node server.js
 ```
 
+## Showing participants how their profile was worked out
+
+After finishing, participants see the per-theme rule (**more than half correct = Strong**),
+the combination that selected their persona, and every question with the answer they gave.
+
+By default the correct answer is also shown for the questions they got wrong. If that risks
+contaminating the sample while the study is running, hide the answer key — right/wrong marks
+and the profile explanation stay:
+
+```bash
+REVEAL_ANSWERS=false node server.js      # or set it in .env for docker compose
+```
+
 ## Project layout
 
 | Path | Purpose |

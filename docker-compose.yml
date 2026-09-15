@@ -26,6 +26,7 @@ services:
     environment:
       PORT: 3000
       DATABASE_URL: postgres://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-app}@db:5432/${POSTGRES_DB:-ailit}
+      REVEAL_ANSWERS: ${REVEAL_ANSWERS:-true}
     depends_on:
       db:
         condition: service_healthy

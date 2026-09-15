@@ -14,6 +14,10 @@ const PROFILES = JSON.parse(fs.readFileSync(path.join(__dirname, 'profiles.json'
 const store = require('./storage');
 
 const PORT = process.env.PORT || 3000;
+// The result screen explains how each answer fed into the profile. Set
+// REVEAL_ANSWERS=false to show only right/wrong and keep the answer key hidden
+// (useful if participants might share it while the study is still running).
+const REVEAL_ANSWERS = process.env.REVEAL_ANSWERS !== 'false';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 // ---------------------------------------------------------------- helpers
@@ -216,7 +220,19 @@ function clientView(p) {
 
 function resultPayload(p) {
   const profile = PROFILES[p.profileKey] || PROFILES.LLL;
-  return { code: p.code, profileKey: p.profileKey, profile, score: p.score };
+  return {
+    code: p.code, profileKey: p.profileKey, profile, score: p.score,
+    revealAnswers: REVEAL_ANSWERS,
+    // Per-question breakdown so the participant can see which answers produced
+    // their profile. Question/option wording already lives in the browser's
+    // bootstrap, so only the keys travel here.
+    review: QUESTIONS.map((q) => {
+      const chosen = (p.answers && p.answers[q.id]) || null;
+      const item = { id: q.id, rubric: q.rubric, chosen, isCorrect: chosen === q.correct };
+      if (REVEAL_ANSWERS) item.correct = q.correct;
+      return item;
+    }),
+  };
 }
 
 // ---------------------------------------------------------------- server

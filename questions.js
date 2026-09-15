@@ -139,7 +139,7 @@ const QUESTIONS = [
       { key: 'A', en: 'Giving the AI information about your level.', fr: "Fournir à l'IA des informations sur votre niveau." },
       { key: 'B', en: 'Asking the AI to include specific concepts or knowledge.', fr: "Demander à l'IA d'inclure certains concepts/savoirs en particulier." },
       { key: 'C', en: 'Giving the AI your entire course.', fr: "Fournir à l'IA votre cours entier." },
-      { key: 'D', en: 'Entering a very brief description of the task and not describing the technical concepts, so as not to exceed the context window.', fr: "Renseigner une description très succincte de la tâche et ne pas fournir de description des concepts techniques pour ne pas dépasser la fenêtre de contexte." },
+      { key: 'D', en: 'Entering a very brief description of the task and not describing the technical concepts, so as not to exceed the context window (the maximum amount of information an AI can hold on to within a conversation).', fr: "Renseigner une description très succincte de la tâche et ne pas fournir de description des concepts techniques pour ne pas dépasser la fenêtre de contexte (quantité maximale d'informations qu'une IA peut retenir dans la conversation)." },
     ],
   },
   {
@@ -171,8 +171,8 @@ const QUESTIONS = [
   {
     id: 'q13', rubric: 'technique', difficulty: 3, correct: 'C',
     q: {
-      en: 'You have a large dataset of emails and want to build an app that answers questions based on it. Which need is best served by using RAG over plain prompting?',
-      fr: "Vous avez un grand jeu de données composé de mails et vous voulez construire une application qui réponde à des questions en se basant dessus. À quel besoin répond le mieux l'usage de RAG dans cette situation ?",
+      en: 'You have a large dataset of emails and want to build an app that answers questions based on it. Which need is best served by using RAG (retrieval-augmented generation, i.e. generation augmented with external sources) in this situation?',
+      fr: "Vous avez un grand jeu de données composé de mails et vous voulez construire une application qui réponde à des questions en se basant dessus. À quel besoin répond le mieux l'usage de RAG (génération augmentée par sources externes) dans cette situation ?",
     },
     options: [
       { key: 'A', en: 'You need to generate creative texts based on the email content.', fr: "Vous avez besoin de générer des textes créatifs basés sur le contenu des mails." },
@@ -238,8 +238,8 @@ const QUESTIONS = [
   {
     id: 'q18', rubric: 'ethique', difficulty: 2, correct: 'C',
     q: {
-      en: 'A generative AI produced a summary of a research paper stating: "the study found that increased screen time is directly correlated with decreased attention spans in children aged 8-12." What is your next step?',
-      fr: "Une IA générative a réalisé un résumé d'un article scientifique déclarant : \"l'étude a trouvé qu'un temps d'écran prolongé est directement corrélé avec une baisse de l'attention chez les enfants de 8-12 ans.\" Quelle est la prochaine étape ?",
+      en: 'A generative AI produced a summary of a research paper stating: "the study found that increased screen time is directly correlated with decreased attention spans in children aged 8-12." Which step will make you the most confident in the result?',
+      fr: "Une IA générative a réalisé un résumé d'un article scientifique déclarant : \"l'étude a trouvé qu'un temps d'écran prolongé est directement corrélé avec une baisse de l'attention chez les enfants de 8-12 ans.\" Quelle étape vous permettra d'être le plus sûr du résultat ?",
     },
     options: [
       { key: 'A', en: 'Accept the summary directly as accurate because AI tools are generally reliable.', fr: "Valider directement le résumé car les IA sont généralement fiables." },

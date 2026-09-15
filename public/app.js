@@ -6,6 +6,8 @@ const App = {
   code: null,
   bootstrap: null,       // { rubrics, rubricOrder, questions }
   info: null,
+  completed: false,     // quiz finished: no further writes are accepted
+  infoDraft: null,      // in-progress "about you" answers (survives re-renders)
   answers: {},           // questionId -> "A".."D"
   order: [],             // flattened question order [{rubricIndex, q}]
   flowIndex: 0,          // pointer into a "flow" of intro+question steps
@@ -196,41 +198,204 @@ function screenCode() {
   document.getElementById('cont').onclick = () => { buildFlow(); screenOverview(); };
 }
 
+// ---------------------------------------------------------- "about you" form
+// The field / options question is mandatory: the study needs it to appreciate
+// transfer. For lycée participants it is broken down into filière → niveau →
+// spécialités (générale) or série (technologique).
+
+function normaliseInfo(info) {
+  const d = Object.assign(
+    { age: '', level: '', filiere: '', filiereType: '', niveau: '', serie: '', specialites: [] },
+    info || {},
+  );
+  if (!Array.isArray(d.specialites)) d.specialites = [];
+  return d;
+}
+
+// Drop values that no longer apply after a branch change, and never keep more
+// spécialités than the chosen year allows.
+function normaliseDraft(d) {
+  if (!Array.isArray(d.specialites)) d.specialites = [];
+  if (d.level !== 'highschool') { d.filiereType = ''; d.niveau = ''; d.serie = ''; d.specialites = []; }
+  if (d.filiereType !== 'generale') { d.niveau = ''; d.specialites = []; }
+  if (d.filiereType !== 'technologique') { d.serie = ''; }
+  const picks = niveauPicks(d.niveau);
+  if (d.specialites.length > picks) d.specialites = d.specialites.slice(0, picks);
+  return d;
+}
+
+function niveauPicks(key) {
+  const n = window.LYCEE.niveaux.find((x) => x.key === key);
+  return n ? n.picks : 0;
+}
+
+// Read only the controls actually present, so switching branches doesn't wipe
+// what was typed in a field that is currently hidden.
+function readInfoForm(form) {
+  const fd = new FormData(form);
+  const d = Object.assign({}, App.infoDraft);
+  const has = (name) => !!form.querySelector(`[name="${name}"]`);
+  if (has('age')) d.age = (fd.get('age') || '').toString().trim();
+  if (has('level')) d.level = fd.get('level') || '';
+  if (has('filiere')) d.filiere = (fd.get('filiere') || '').toString().trim();
+  if (has('filiereType')) d.filiereType = fd.get('filiereType') || '';
+  if (has('niveau')) d.niveau = fd.get('niveau') || '';
+  if (has('serie')) d.serie = fd.get('serie') || '';
+  if (has('specialites')) d.specialites = fd.getAll('specialites');
+  return d;
+}
+
+// Flatten the draft into the stored record, keeping a readable `filiere`
+// summary so downstream exports stay usable.
+function buildInfo(d) {
+  const LY = window.LYCEE;
+  const fr = (list, key) => { const o = list.find((x) => x.key === key); return o ? o.fr : key; };
+  const info = { age: d.age, level: d.level, filiere: d.filiere };
+  if (d.level !== 'highschool') return info;
+  info.filiereType = d.filiereType;
+  if (d.filiereType === 'generale') {
+    info.niveau = d.niveau;
+    info.specialites = d.specialites;
+    const parts = ['Générale', fr(LY.niveaux, d.niveau)];
+    if (d.specialites.length) parts.push(d.specialites.map((k) => fr(LY.specialites, k)).join(', '));
+    info.filiere = parts.join(' · ');
+  } else {
+    info.serie = d.serie;
+    info.filiere = 'Technologique · ' + fr(LY.series, d.serie);
+  }
+  return info;
+}
+
 function screenInfo(errKey) {
-  const info = App.info || {};
+  const LY = window.LYCEE;
+  if (!App.infoDraft) App.infoDraft = normaliseInfo(App.info);
+  // Carry over whatever is on screen (language switch, validation error, branch change).
+  const live = document.getElementById('infoForm');
+  if (live) App.infoDraft = normaliseDraft(readInfoForm(live));
+  const d = App.infoDraft;
+
   const levels = ['highschool', 'license', 'master', 'engineering', 'medecine', 'phd', 'other'];
+  const isHS = d.level === 'highschool';
+  const picks = niveauPicks(d.niveau);
+
+  const radios = (name, list, current) => list.map((o) => `
+    <label class="choice ${current === o.key ? 'on' : ''}">
+      <input type="radio" name="${name}" value="${esc(o.key)}" ${current === o.key ? 'checked' : ''} />
+      <span>${esc(L(o))}</span>
+    </label>`).join('');
+
+  const specHint = () => t('info_hs_spec_hint')
+    .replace('{n}', picks).replace('{sel}', d.specialites.length);
+
+  const specChecks = LY.specialites.map((o) => {
+    const on = d.specialites.indexOf(o.key) !== -1;
+    const off = !on && d.specialites.length >= picks;
+    return `
+    <label class="choice ${on ? 'on' : ''} ${off ? 'off' : ''}">
+      <input type="checkbox" name="specialites" value="${esc(o.key)}" ${on ? 'checked' : ''} ${off ? 'disabled' : ''} />
+      <span>${esc(L(o))}</span>
+    </label>`;
+  }).join('');
+
+  const generaleHtml = `
+    <fieldset class="choiceset">
+      <legend>${esc(t('info_hs_niveau'))}</legend>
+      <div class="choices inline">${radios('niveau', LY.niveaux, d.niveau)}</div>
+    </fieldset>
+    ${d.niveau && picks === 0 ? `<p class="hint">${esc(t('info_hs_spec_none'))}</p>` : ''}
+    ${picks > 0 ? `
+    <fieldset class="choiceset">
+      <legend>${esc(t('info_hs_spec'))}</legend>
+      <p class="count" id="specCount">${esc(specHint())}</p>
+      <div class="choices">${specChecks}</div>
+    </fieldset>` : ''}`;
+
+  const technoHtml = `
+    <fieldset class="choiceset">
+      <legend>${esc(t('info_hs_serie'))}</legend>
+      <div class="choices">${radios('serie', LY.series, d.serie)}</div>
+    </fieldset>`;
+
+  const filiereHtml = isHS ? `
+    <label class="field"><span>${esc(t('info_hs_filiere'))}</span>
+      <select name="filiereType" required>
+        <option value="" ${!d.filiereType ? 'selected' : ''} disabled>${esc(t('info_level_choose'))}</option>
+        ${LY.filieres.map((f) => `<option value="${esc(f.key)}" ${d.filiereType === f.key ? 'selected' : ''}>${esc(L(f))}</option>`).join('')}
+      </select></label>
+    ${d.filiereType === 'generale' ? generaleHtml : ''}
+    ${d.filiereType === 'technologique' ? technoHtml : ''}` : `
+    <label class="field"><span>${esc(t('info_filiere'))}</span>
+      <input type="text" name="filiere" placeholder="${esc(t('info_filiere_ph'))}" value="${esc(d.filiere || '')}" required /></label>`;
+
   render(`
     <section class="card">
       <h1>${esc(t('info_title'))}</h1>
       <p class="lead">${esc(t('info_lead'))}</p>
-      <form id="infoForm" class="form" autocomplete="off">
+      <form id="infoForm" class="form" autocomplete="off" novalidate>
         <div class="grid2">
           <label class="field"><span>${esc(t('info_age'))}</span>
-            <input type="number" name="age" min="5" max="120" value="${esc(info.age || '')}" required /></label>
+            <input type="number" name="age" min="5" max="120" value="${esc(d.age || '')}" required /></label>
           <label class="field"><span>${esc(t('info_level'))}</span>
             <select name="level" required>
-              <option value="" ${!info.level ? 'selected' : ''} disabled>${esc(t('info_level_choose'))}</option>
-              ${levels.map((lv) => `<option value="${lv}" ${info.level === lv ? 'selected' : ''}>${esc(t('level_' + lv))}</option>`).join('')}
+              <option value="" ${!d.level ? 'selected' : ''} disabled>${esc(t('info_level_choose'))}</option>
+              ${levels.map((lv) => `<option value="${lv}" ${d.level === lv ? 'selected' : ''}>${esc(t('level_' + lv))}</option>`).join('')}
             </select></label>
         </div>
-        <label class="field"><span>${esc(t('info_filiere'))}</span>
-          <input type="text" name="filiere" placeholder="${esc(t('info_filiere_ph'))}" value="${esc(info.filiere || '')}" /></label>
+        ${filiereHtml}
         ${errKey ? `<p class="err">${esc(t(errKey))}</p>` : ''}
         <button class="btn primary big" type="submit">${esc(t('info_next'))}</button>
       </form>
     </section>
   `);
-  document.getElementById('infoForm').onsubmit = async (e) => {
-    e.preventDefault();
-    const fd = new FormData(e.target);
-    const info = {
-      age: (fd.get('age') || '').toString().trim(),
-      level: fd.get('level') || '',
-      filiere: (fd.get('filiere') || '').trim(),
+
+  const form = document.getElementById('infoForm');
+  // Branch-changing controls redraw the form; the draft carries the values over.
+  ['level', 'filiereType', 'niveau'].forEach((name) => {
+    form.querySelectorAll(`[name="${name}"]`).forEach((el) => { el.onchange = () => screenInfo(); });
+  });
+  // Série: no sub-question depends on it, so just repaint the selected chip.
+  form.querySelectorAll('[name="serie"]').forEach((el) => {
+    el.onchange = () => {
+      form.querySelectorAll('[name="serie"]').forEach((b) => b.parentElement.classList.toggle('on', b.checked));
+      App.infoDraft = normaliseDraft(readInfoForm(form));
     };
-    if (!info.age || !info.level) return screenInfo('info_required');
-    App.info = info;
-    await save({ info, step: 'result' });
+  });
+  // Spécialités: cap the selection at the number allowed for the chosen year.
+  const boxes = Array.from(form.querySelectorAll('[name="specialites"]'));
+  boxes.forEach((box) => {
+    box.onchange = () => {
+      const chosen = boxes.filter((b) => b.checked).length;
+      boxes.forEach((b) => {
+        b.disabled = !b.checked && chosen >= picks;
+        b.parentElement.classList.toggle('on', b.checked);
+        b.parentElement.classList.toggle('off', b.disabled);
+      });
+      App.infoDraft = normaliseDraft(readInfoForm(form));
+      const c = document.getElementById('specCount');
+      if (c) c.textContent = t('info_hs_spec_hint').replace('{n}', picks).replace('{sel}', chosen);
+    };
+  });
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const v = normaliseDraft(readInfoForm(form));
+    App.infoDraft = v;
+    if (!v.age || !v.level) return screenInfo('info_required');
+    const age = Number(v.age);
+    if (!Number.isFinite(age) || age < 5 || age > 120) return screenInfo('info_age_invalid');
+    if (v.level === 'highschool') {
+      if (!v.filiereType) return screenInfo('info_hs_filiere_required');
+      if (v.filiereType === 'generale') {
+        if (!v.niveau) return screenInfo('info_hs_niveau_required');
+        if (niveauPicks(v.niveau) > 0 && v.specialites.length === 0) return screenInfo('info_hs_spec_required');
+      } else if (!v.serie) {
+        return screenInfo('info_hs_serie_required');
+      }
+    } else if (!v.filiere) {
+      return screenInfo('info_filiere_required');
+    }
+    App.info = buildInfo(v);
+    await save({ info: App.info, step: 'result' });
     finishQuiz();
   };
 }
@@ -353,7 +518,67 @@ async function showStoredResult() {
   if (ok) screenResult(data);
 }
 
+// Explains how the answers produced the persona: the per-theme rule, the
+// combination that selected it, then every question with the answer given.
+function reviewSection(data) {
+  const review = data.review || [];
+  if (!review.length || !App.bootstrap) return '';
+  const byId = {};
+  App.bootstrap.questions.forEach((q) => { byId[q.id] = q; });
+  const optionText = (q, key) => {
+    const o = q && q.options.find((x) => x.key === key);
+    return o ? L(o) : '';
+  };
+
+  const groups = App.bootstrap.rubricOrder.map((rkey) => {
+    const r = App.bootstrap.rubrics[rkey];
+    const items = review.filter((it) => it.rubric === rkey);
+    if (!items.length) return '';
+    const nCorrect = items.filter((it) => it.isCorrect).length;
+
+    const rows = items.map((it) => {
+      const q = byId[it.id];
+      if (!q) return '';
+      const ok = it.isCorrect;
+      const yours = it.chosen
+        ? `<strong>${esc(it.chosen)}</strong> — ${esc(optionText(q, it.chosen))}`
+        : `<em>${esc(t('result_no_answer'))}</em>`;
+      // `correct` is omitted by the server when REVEAL_ANSWERS=false.
+      const showKey = !ok && it.correct;
+      return `
+        <li class="review-item ${ok ? 'ok' : 'ko'}">
+          <p class="review-q"><span class="review-mark" aria-hidden="true">${ok ? '✓' : '✗'}</span>${esc(L(q.q))}</p>
+          <p class="review-a">
+            <span class="review-lab">${esc(t('result_your_answer'))}</span> ${yours}
+            <span class="review-verdict">${esc(ok ? t('result_answer_right') : t('result_answer_wrong'))}</span>
+          </p>
+          ${showKey ? `<p class="review-a good">
+            <span class="review-lab">${esc(t('result_correct_answer'))}</span>
+            <strong>${esc(it.correct)}</strong> — ${esc(optionText(q, it.correct))}
+          </p>` : ''}
+        </li>`;
+    }).join('');
+
+    return `
+      <details class="review-group">
+        <summary>
+          <span class="review-group-name">${r.emoji} ${esc(L(r.label))}</span>
+          <span class="review-group-count">${esc(t(nCorrect > 1 ? 'result_group_summary' : 'result_group_summary_one').replace('{correct}', nCorrect).replace('{total}', items.length))}</span>
+        </summary>
+        <ul class="review-list">${rows}</ul>
+      </details>`;
+  }).join('');
+
+  return `
+    <div class="review">
+      <h3>${esc(t('result_detail_title'))}</h3>
+      <p class="muted">${esc(t('result_detail_lead'))}</p>
+      ${groups}
+    </div>`;
+}
+
 function screenResult(data) {
+  App.completed = true;   // /api/save refuses writes past completion
   const p = data.profile;
   const score = data.score || { rubrics: [], totalCorrect: 0, totalQuestions: 0 };
   const bars = (score.rubrics || []).map((r) => `
@@ -363,6 +588,16 @@ function screenResult(data) {
       <span class="score-num">${r.correct}/${r.total}</span>
       <span class="score-tag ${r.level}">${esc(r.level === 'high' ? t('result_high') : t('result_low'))}</span>
     </div>`).join('');
+
+  const combo = (score.rubrics || [])
+    .map((r) => `${r.emoji} ${r.level === 'high' ? t('result_high') : t('result_low')}`)
+    .join(' · ');
+  const rule = esc(t('result_how_rule'))
+    .replace('{high}', `<strong class="lv-high">${esc(t('result_high'))}</strong>`)
+    .replace('{low}', `<strong class="lv-low">${esc(t('result_low'))}</strong>`);
+  const comboLine = esc(t('result_how_combo'))
+    .replace('{combo}', `<strong>${esc(combo)}</strong>`)
+    .replace('{persona}', `<strong>${p.emoji} ${esc(L(p.name))}</strong>`);
 
   render(`
     <section class="card result">
@@ -380,6 +615,14 @@ function screenResult(data) {
         <div class="score-total">${esc(t('result_total'))}: <strong>${score.totalCorrect}/${score.totalQuestions}</strong></div>
       </div>
 
+      <div class="how">
+        <h3>${esc(t('result_how_title'))}</h3>
+        <p>${rule}</p>
+        <p class="how-combo">${comboLine}</p>
+      </div>
+
+      ${reviewSection(data)}
+
       <div class="result-foot">
         <div class="mini-code">${esc(t('result_again'))}: <strong>${esc(App.code)}</strong></div>
         <p class="muted">${esc(t('result_share_note'))}</p>
@@ -394,7 +637,7 @@ function setLang(lang) {
   App.lang = lang;
   localStorage.setItem('lang', lang);
   applyLangButtons();
-  if (App.code) save({ lang }).catch(() => {});
+  if (App.code && !App.completed) save({ lang }).catch(() => {});
   rerenderCurrent();
 }
 function rerenderCurrent() {
