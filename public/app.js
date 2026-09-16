@@ -118,7 +118,7 @@ const CONTACT_EMAIL = 'badmavasan.kirouchenassamy@lip6.fr';
 
 // Arriving through a class link: say which class, so nobody wonders why their
 // teacher will see their results. An unrecognised code is called out rather
-// than silently ignored — the quiz still works, it just counts as independent.
+// than silently ignored: the quiz still works, it just counts as independent.
 function classBanner() {
   if (App.klass) {
     return `<p class="class-banner">${esc(t('welcome_class_join')
@@ -561,7 +561,7 @@ function reviewSection(data) {
       if (!q) return '';
       const ok = it.isCorrect;
       const yours = it.chosen
-        ? `<strong>${esc(it.chosen)}</strong> — ${esc(optionText(q, it.chosen))}`
+        ? `<strong>${esc(it.chosen)}.</strong> ${esc(optionText(q, it.chosen))}`
         : `<em>${esc(t('result_no_answer'))}</em>`;
       // `correct` is omitted by the server when REVEAL_ANSWERS=false.
       const showKey = !ok && it.correct;
@@ -574,7 +574,7 @@ function reviewSection(data) {
           </p>
           ${showKey ? `<p class="review-a good">
             <span class="review-lab">${esc(t('result_correct_answer'))}</span>
-            <strong>${esc(it.correct)}</strong> — ${esc(optionText(q, it.correct))}
+            <strong>${esc(it.correct)}.</strong> ${esc(optionText(q, it.correct))}
           </p>` : ''}
         </li>`;
     }).join('');

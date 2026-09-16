@@ -289,7 +289,7 @@ select option { background: #fff; color: var(--ink); }
 .score-tag.low { color: #b9791a; background: rgba(224,142,11,.16); }
 .score-total { margin-top: 14px; font-size: 15px; }
 
-/* result — how the profile was worked out */
+/* result: how the profile was worked out */
 .how { margin: 22px 0 8px; background: var(--bg-2); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px 18px; }
 .how h3 { font-size: 16px; margin: 0 0 8px; }
 .how p { margin: 0 0 8px; font-size: 14px; color: #324a5e; }
@@ -298,7 +298,7 @@ select option { background: #fff; color: var(--ink); }
 .how .lv-low { color: #b9791a; }
 .how-combo { padding-top: 8px; border-top: 1px solid var(--card-border); }
 
-/* result — question-by-question review */
+/* result: question-by-question review */
 .review { margin: 22px 0 8px; }
 .review h3 { font-size: 16px; margin: 0 0 4px; }
 .review > .muted { margin: 0 0 12px; }
@@ -350,7 +350,7 @@ select option { background: #fff; color: var(--ink); }
   .score-row { grid-template-columns: 1fr; gap: 4px; }
   .review-a { padding-left: 0; }
   .kpis { grid-template-columns: 1fr; }
-  /* stacked: name and count on one line, the bar spanning underneath — placed
+  /* stacked: name and count on one line, the bar spanning underneath, placed
      explicitly, or auto-flow drops the count beside the wrong persona. */
   .persona-row { grid-template-columns: 1fr auto; row-gap: 5px; margin-bottom: 14px; }
   .persona-cell { grid-area: 1 / 1; }

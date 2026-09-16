@@ -1,6 +1,6 @@
 'use strict';
 
-// Teacher authentication helpers — password hashing, session tokens and a
+// Teacher authentication helpers: password hashing, session tokens and a
 // self-hosted captcha. Deliberately dependency-free (Node crypto only) so the
 // platform keeps no third-party trackers and nothing leaves the server.
 

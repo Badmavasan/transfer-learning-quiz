@@ -3,7 +3,7 @@
 #
 # Paste these two location blocks inside your existing `server { ... }` block
 # (the one that terminates TLS for badmavasan.tech). The app's own frontend
-# container must be published on the host — docker-compose maps it to :8080.
+# container must be published on the host; docker-compose maps it to :8080.
 
 # Redirect the bare path to the trailing-slash form. This is REQUIRED:
 # the frontend resolves assets and /api calls relative to the page URL, so the

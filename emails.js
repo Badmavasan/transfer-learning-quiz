@@ -24,34 +24,34 @@ function shell(title, intro, buttonLabel, url, outro) {
 const TEXTS = {
   verify: {
     fr: {
-      subject: 'Confirmez votre adresse — Littératie IA',
+      subject: 'Confirmez votre adresse : Littératie IA',
       title: 'Confirmez votre adresse',
       intro: "Vous venez de créer un compte enseignant sur la plateforme Littératie IA. Confirmez cette adresse pour activer votre compte.",
       button: 'Confirmer mon adresse',
       outro: "Ce lien expire dans 24 heures. Si vous n'êtes pas à l'origine de cette demande, ignorez ce message : aucun compte ne sera activé.",
     },
     en: {
-      subject: 'Confirm your address — AI Literacy',
+      subject: 'Confirm your address: AI Literacy',
       title: 'Confirm your address',
       intro: 'You have just created a teacher account on the AI Literacy platform. Confirm this address to activate it.',
       button: 'Confirm my address',
-      outro: 'This link expires in 24 hours. If you did not ask for this, ignore this message — no account will be activated.',
+      outro: 'This link expires in 24 hours. If you did not ask for this, ignore this message. No account will be activated.',
     },
   },
   reset: {
     fr: {
-      subject: 'Réinitialiser votre mot de passe — Littératie IA',
+      subject: 'Réinitialiser votre mot de passe : Littératie IA',
       title: 'Réinitialiser votre mot de passe',
       intro: "Vous avez demandé un nouveau mot de passe pour votre compte enseignant. Choisissez-en un nouveau via le lien ci-dessous.",
       button: 'Choisir un nouveau mot de passe',
       outro: "Ce lien expire dans 1 heure et ne peut servir qu'une fois. Si vous n'êtes pas à l'origine de cette demande, ignorez ce message : votre mot de passe actuel reste valable.",
     },
     en: {
-      subject: 'Reset your password — AI Literacy',
+      subject: 'Reset your password: AI Literacy',
       title: 'Reset your password',
       intro: 'You asked for a new password for your teacher account. Pick a new one using the link below.',
       button: 'Choose a new password',
-      outro: 'This link expires in 1 hour and can be used once. If you did not ask for this, ignore this message — your current password still works.',
+      outro: 'This link expires in 1 hour and can be used once. If you did not ask for this, ignore this message. Your current password still works.',
     },
   },
 };

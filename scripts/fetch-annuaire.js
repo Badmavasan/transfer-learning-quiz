@@ -58,5 +58,5 @@ function get(url) {
     count: out.length,
     lycees: out,
   }));
-  console.log('wrote', file, '—', out.length, 'lycées of', total);
+  console.log('wrote', file, 'with', out.length, 'lycées of', total);
 })().catch((e) => { console.error('FAILED', e.message); process.exit(1); });

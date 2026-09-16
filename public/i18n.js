@@ -7,8 +7,8 @@ window.I18N = {
 
     // Welcome
     welcome_title: 'How well do you know AI? 🤖',
-    welcome_lead: 'A short, fun quiz about Artificial Intelligence (AI) — discover your persona at the end!',
-    welcome_desc_1: 'You will answer 20 multiple-choice questions split into 3 themes: General Knowledge, Technical, and Ethics & Society. It should take you about 10 minutes. There are no trick scores and nothing to revise — just answer honestly.',
+    welcome_lead: 'A short, fun quiz about Artificial Intelligence (AI). Discover your persona at the end!',
+    welcome_desc_1: 'You will answer 20 multiple-choice questions split into 3 themes: General Knowledge, Technical, and Ethics & Society. It should take you about 10 minutes. There are no trick scores and nothing to revise. Just answer honestly.',
     welcome_desc_2: 'This is a nationwide scientific research study, run with French schools and universities. While you answer, we record your mouse movements and the time you spend on each question. Everything is anonymous: we never ask for your email, and you are identified only by a random code.',
     welcome_privacy: 'Your data is collected solely for this scientific study, stored securely in France, and permanently deleted once the research is complete. You can ask to access, modify or delete your data at any time. Any questions? Contact {email}.',
     welcome_desc_3: 'At the end you unlock your AI-familiarity persona. Will you be the Algorithm Sage 🧙, the Buzzword Parrot 🦜, or the Mad Tinkerer 🔧?',
@@ -19,7 +19,7 @@ window.I18N = {
     welcome_reconnect: 'Reconnect',
     welcome_ack_required: 'Please tick the box to continue.',
     welcome_code_unknown: 'We don\'t recognise that code. Check it and try again.',
-    welcome_class_join: 'You are joining the class “{name}” ({subject}). Your teacher will see the class results — never your name, and never your individual answers.',
+    welcome_class_join: 'You are joining the class “{name}” ({subject}). Your teacher will see the class results, never your name and never your individual answers.',
     welcome_class_unknown: 'That class link was not recognised. You can still take the quiz; your answers just will not be attached to a class.',
 
     // Code reveal
@@ -39,16 +39,16 @@ window.I18N = {
     info_filiere_ph: 'e.g. Computer Science, Law, Biology…',
     info_next: 'See my persona →',
     info_required: 'Please fill in your age and level.',
-    info_age_invalid: 'Please enter a valid age (5–120).',
-    info_filiere_required: 'Please tell us your field / options — we need it to study transfer.',
+    info_age_invalid: 'Please enter a valid age (5 to 120).',
+    info_filiere_required: 'Please tell us your field / options. We need it to study transfer.',
 
-    // Info — lycée breakdown
+    // Info: lycée breakdown
     info_hs_filiere: 'Which track are you in?',
     info_hs_filiere_required: 'Please choose your track.',
     info_hs_niveau: 'Year (tick one)',
     info_hs_niveau_required: 'Please choose your year.',
     info_hs_spec: 'Which specialities do you take? (tick)',
-    info_hs_spec_hint: 'Tick up to {n} — {sel} selected',
+    info_hs_spec_hint: 'Tick up to {n}, {sel} selected',
     info_hs_spec_none: 'In 2nde there is no speciality to choose yet.',
     info_hs_spec_required: 'Please tick your specialities.',
     info_hs_serie: 'Which série are you in? (tick one)',
@@ -64,7 +64,7 @@ window.I18N = {
 
     // Rubric overview
     overview_title: 'Three themes, one you 🎯',
-    overview_lead: 'The quiz is split into three rubrics. You\'ll go through them one at a time, and within each one the questions appear in a random order. One answer per question, and please don\'t use AI to answer for you — we want to measure what you really know.',
+    overview_lead: 'The quiz is split into three rubrics. You\'ll go through them one at a time, and within each one the questions appear in a random order. One answer per question, and please don\'t use AI to answer for you. We want to measure what you really know.',
     overview_start: 'Let\'s go →',
     overview_questions: 'questions',
 
@@ -90,10 +90,10 @@ window.I18N = {
     result_low: 'Growing',
     result_thanks: 'Thanks for taking part! 💜',
 
-    // Result — how the profile was worked out
+    // Result: how the profile was worked out
     result_how_title: 'How we worked this out',
     result_how_rule: 'Each theme counts as {high} when you got more than half of its questions right, and {low} otherwise. The three results together pick your persona.',
-    result_how_combo: 'Your combination — {combo} — gives {persona}.',
+    result_how_combo: 'Your combination, {combo}, gives {persona}.',
     result_detail_title: 'Your answers, question by question',
     result_detail_lead: 'Open a theme to see which answers counted towards your score.',
     result_group_summary: '{correct} of {total} right',
@@ -112,8 +112,8 @@ window.I18N = {
     footer_teacher: 'Enseignant ? Accéder à l’espace enseignant →',
 
     welcome_title: "Connaissez-vous l'IA ? 🤖",
-    welcome_lead: "Un petit quiz amusant sur l'intelligence artificielle (IA) — découvrez votre profil à la fin !",
-    welcome_desc_1: "Vous répondrez à 20 questions à choix multiples réparties en 3 thèmes : Culture générale, Technique, et Éthique & société. Cela devrait vous prendre environ 10 minutes. Aucune note piège, rien à réviser — répondez simplement honnêtement.",
+    welcome_lead: "Un petit quiz amusant sur l'intelligence artificielle (IA). Découvrez votre profil à la fin !",
+    welcome_desc_1: "Vous répondrez à 20 questions à choix multiples réparties en 3 thèmes : Culture générale, Technique, et Éthique & société. Cela devrait vous prendre environ 10 minutes. Aucune note piège, rien à réviser. Répondez simplement honnêtement.",
     welcome_desc_2: "Il s'agit d'une étude scientifique à l'échelle nationale, menée auprès des écoles et universités françaises. Pendant que vous répondez, nous enregistrons vos mouvements de souris et le temps passé sur chaque question. Tout est anonyme : nous ne demandons jamais votre e-mail, vous êtes identifié uniquement par un code aléatoire.",
     welcome_privacy: "Vos données sont collectées uniquement pour cette étude scientifique, stockées de manière sécurisée en France, et définitivement supprimées une fois la recherche terminée. Vous pouvez demander à accéder, modifier ou supprimer vos données à tout moment. Une question ? Contactez {email}.",
     welcome_desc_3: "À la fin, vous débloquez votre profil de familiarité avec l'IA. Serez-vous le Sage de l'Algorithme 🧙, le Perroquet à Buzzwords 🦜, ou le Bricoleur Fou 🔧 ?",
@@ -124,7 +124,7 @@ window.I18N = {
     welcome_reconnect: 'Se reconnecter',
     welcome_ack_required: 'Veuillez cocher la case pour continuer.',
     welcome_code_unknown: 'Ce code est introuvable. Vérifiez-le et réessayez.',
-    welcome_class_join: "Vous rejoignez la classe « {name} » ({subject}). Votre enseignant verra les résultats de la classe — jamais votre nom, ni vos réponses individuelles.",
+    welcome_class_join: "Vous rejoignez la classe « {name} » ({subject}). Votre enseignant verra les résultats de la classe, jamais votre nom ni vos réponses individuelles.",
     welcome_class_unknown: "Ce lien de classe n'a pas été reconnu. Vous pouvez tout de même répondre au quiz ; vos réponses ne seront simplement rattachées à aucune classe.",
 
     code_title: 'Voici votre code personnel 🔑',
@@ -142,16 +142,16 @@ window.I18N = {
     info_filiere_ph: 'ex. Informatique, Droit, Biologie…',
     info_next: 'Voir mon profil →',
     info_required: 'Veuillez renseigner votre âge et votre niveau.',
-    info_age_invalid: 'Veuillez indiquer un âge valide (5–120).',
-    info_filiere_required: "Merci d'indiquer votre filière / vos options — nous en avons besoin pour mieux apprécier le transfert.",
+    info_age_invalid: 'Veuillez indiquer un âge valide (5 à 120).',
+    info_filiere_required: "Merci d'indiquer votre filière / vos options. Nous en avons besoin pour mieux apprécier le transfert.",
 
-    // Info — détail lycée
+    // Info : détail lycée
     info_hs_filiere: 'Quelle est votre filière ?',
     info_hs_filiere_required: 'Veuillez choisir votre filière.',
     info_hs_niveau: 'Niveau (cocher)',
     info_hs_niveau_required: 'Veuillez choisir votre niveau.',
     info_hs_spec: 'Quelles sont vos spécialités ? (cocher)',
-    info_hs_spec_hint: 'Cochez jusqu\u2019à {n} — {sel} sélectionnée(s)',
+    info_hs_spec_hint: 'Cochez jusqu\u2019à {n}, {sel} sélectionnée(s)',
     info_hs_spec_none: "En 2nde, il n'y a pas encore de spécialité à choisir.",
     info_hs_spec_required: 'Veuillez cocher vos spécialités.',
     info_hs_serie: 'Quelle est votre série ? (cocher)',
@@ -166,7 +166,7 @@ window.I18N = {
     level_other: 'Autre',
 
     overview_title: 'Trois thèmes, un seul vous 🎯',
-    overview_lead: "Le quiz est divisé en trois rubriques. Vous les parcourez une par une, et à l'intérieur de chacune les questions apparaissent dans un ordre aléatoire. Une seule réponse possible par question, et merci de ne pas utiliser d'IA pour répondre à votre place — nous voulons mesurer ce que vous savez vraiment.",
+    overview_lead: "Le quiz est divisé en trois rubriques. Vous les parcourez une par une, et à l'intérieur de chacune les questions apparaissent dans un ordre aléatoire. Une seule réponse possible par question, et merci de ne pas utiliser d'IA pour répondre à votre place. Nous voulons mesurer ce que vous savez vraiment.",
     overview_start: "C'est parti →",
     overview_questions: 'questions',
 
@@ -189,10 +189,10 @@ window.I18N = {
     result_low: 'En progression',
     result_thanks: 'Merci pour votre participation ! 💜',
 
-    // Résultat — comment le profil a été établi
+    // Résultat : comment le profil a été établi
     result_how_title: 'Comment nous avons établi ce profil',
     result_how_rule: "Un thème compte comme {high} lorsque vous avez plus de la moitié des bonnes réponses, et {low} sinon. C'est la combinaison des trois résultats qui détermine votre profil.",
-    result_how_combo: 'Votre combinaison — {combo} — donne {persona}.',
+    result_how_combo: 'Votre combinaison, {combo}, donne {persona}.',
     result_detail_title: 'Vos réponses, question par question',
     result_detail_lead: 'Ouvrez un thème pour voir quelles réponses ont compté dans votre score.',
     result_group_summary: '{correct} bonnes réponses sur {total}',

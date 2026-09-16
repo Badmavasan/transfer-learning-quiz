@@ -1,4 +1,4 @@
-// AI Literacy questionnaire — bilingual question bank.
+// AI Literacy questionnaire: bilingual question bank.
 // Each question belongs to one rubric (category): "general" | "technique" | "ethique".
 // "difficulty" is 1..3 (used to flavour ordering); within a rubric questions are
 // randomised on the client. "correct" is the correct option key and is NEVER sent
@@ -268,7 +268,7 @@ const QUESTIONS = [
       fr: "Vous générez une image par IA pour illustrer votre diaporama pour un oral. Est-ce que cet usage peut soulever des problématiques de droit d'auteur ?",
     },
     options: [
-      { key: 'A', en: 'Yes, AI-generated images can draw on the style of artists whose works — though protected by copyright — were used to train the models.', fr: "Oui, les images générées par IA peuvent s'inspirer du style d'artistes dont les créations, pourtant protégées par le droit des créateurs, ont été utilisées pour entraîner les modèles." },
+      { key: 'A', en: 'Yes, AI-generated images can draw on the style of artists whose works, though protected by copyright, were used to train the models.', fr: "Oui, les images générées par IA peuvent s'inspirer du style d'artistes dont les créations, pourtant protégées par le droit des créateurs, ont été utilisées pour entraîner les modèles." },
       { key: 'B', en: "Yes, and it is even always possible to trace back to the model's training data from the content it generates.", fr: "Oui, il est d'ailleurs toujours possible de remonter aux données d'entraînement du modèle à partir des productions qu'il génère." },
       { key: 'C', en: 'No, all the images used to train the AI are copyright-free.', fr: "Non, toutes les images qui ont servi à l'entraînement de l'IA sont libres de droit." },
       { key: 'D', en: 'No, AI outputs are original and cannot be considered counterfeits.', fr: "Non, les productions d'IA sont originales et ne peuvent pas être considérées comme des contrefaçons." },

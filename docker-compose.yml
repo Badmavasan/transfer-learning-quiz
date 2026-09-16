@@ -1,4 +1,4 @@
-# AI Literacy Platform — three containers: frontend (nginx) -> backend (Node) -> db (Postgres).
+# AI Literacy Platform, three containers: frontend (nginx) -> backend (Node) -> db (Postgres).
 # Start with:  docker compose up --build
 # Then open:   http://localhost:8080
 

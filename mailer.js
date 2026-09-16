@@ -1,6 +1,6 @@
 'use strict';
 
-// Minimal SMTP client — enough to send the platform's own transactional mail
+// Minimal SMTP client, enough to send the platform's own transactional mail
 // (address confirmation, password reset) without pulling in a dependency.
 // Supports implicit TLS (port 465) and STARTTLS (587), with AUTH LOGIN / PLAIN.
 

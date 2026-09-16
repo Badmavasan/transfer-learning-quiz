@@ -2,7 +2,7 @@
 
 // Loads .env into process.env before anything else reads it. Required first by
 // server.js, because auth.js, storage/ and mailer.js all read configuration at
-// module load — a .env value arriving later would simply be ignored.
+// module load, and a .env value arriving later would simply be ignored.
 // Real environment variables always win over the file.
 
 const fs = require('fs');

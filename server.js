@@ -1,6 +1,6 @@
 'use strict';
 
-// AI Literacy Platform — zero-dependency HTTP layer.
+// AI Literacy Platform: zero-dependency HTTP layer.
 // Storage is pluggable: PostgreSQL when DATABASE_URL is set (Docker), else local JSON files.
 // Run with: node server.js   (then open http://localhost:3000)
 
@@ -26,7 +26,7 @@ const LYCEES = (() => {
     const raw = JSON.parse(fs.readFileSync(path.join(__dirname, 'reference', 'lycees.json'), 'utf8'));
     return raw.lycees.map((l) => Object.assign({}, l, { _s: fold(`${l.nom} ${l.commune} ${l.cp} ${l.depNom}`) }));
   } catch (_) {
-    console.warn('reference/lycees.json missing — the lycée picker will fall back to free text.');
+    console.warn('reference/lycees.json missing, the lycée picker will fall back to free text.');
     return [];
   }
 })();
@@ -76,7 +76,7 @@ async function uniqueCode() {
   return code;
 }
 
-// Questions without the "correct" field — safe to send to the browser.
+// Questions without the "correct" field, safe to send to the browser.
 function publicQuestions() {
   return QUESTIONS.map(({ correct, ...rest }) => rest);
 }
@@ -335,7 +335,7 @@ async function handleApi(req, res, pathname) {
       const found = LYCEES.find((l) => l.uai === String(body.lyceeUai || ''));
       if (!found) return sendJSON(res, 400, { error: 'lycee_required' });
       lyceeUai = found.uai;
-      affiliation = `${found.nom} — ${found.commune} (${found.dep})`;
+      affiliation = `${found.nom}, ${found.commune} (${found.dep})`;
     } else if (!affiliation) {
       return sendJSON(res, 400, { error: 'affiliation_required' });
     }
@@ -483,7 +483,7 @@ async function handleApi(req, res, pathname) {
     }
   }
 
-  // What a student sees when they open a class link — no teacher identity.
+  // What a student sees when they open a class link, with no teacher identity.
   const publicClass = pathname.match(/^\/api\/class\/([A-Za-z0-9]{1,16})$/);
   if (publicClass && req.method === 'GET') {
     const klass = await store.readClass(publicClass[1]);
@@ -535,7 +535,7 @@ async function issueToken(teacher, kind) {
 async function mailToken(teacher, kind, token, lang) {
   const url = `${PUBLIC_URL}/teacher?${kind === 'verify' ? 'verify' : 'reset'}=${token}`;
   if (!mailer.isConfigured()) {
-    console.warn(`SMTP not configured — ${kind} link for ${teacher.email}: ${url}`);
+    console.warn(`SMTP not configured, ${kind} link for ${teacher.email}: ${url}`);
     return false;
   }
   try {

@@ -576,7 +576,7 @@ function screenClass() {
       <div class="kpis">
         <div class="kpi"><span class="kpi-num">${stats.students}</span><span class="kpi-lab">${esc(t('t_stats_students'))}</span></div>
         <div class="kpi"><span class="kpi-num">${stats.completed}</span><span class="kpi-lab">${esc(t('t_stats_completed'))}</span></div>
-        <div class="kpi"><span class="kpi-num">${stats.averageTotal === null ? '—' : stats.averageTotal}<small>/${stats.totalQuestions}</small></span><span class="kpi-lab">${esc(t('t_stats_average'))}</span></div>
+        <div class="kpi"><span class="kpi-num">${stats.averageTotal === null ? '&middot;' : stats.averageTotal}<small>/${stats.totalQuestions}</small></span><span class="kpi-lab">${esc(t('t_stats_average'))}</span></div>
       </div>
 
       ${!stats.completed ? `<p class="hint">${esc(t('t_stats_empty'))}</p>`
