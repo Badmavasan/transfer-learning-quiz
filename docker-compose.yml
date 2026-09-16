@@ -27,6 +27,17 @@ services:
       PORT: 3000
       DATABASE_URL: postgres://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-app}@db:5432/${POSTGRES_DB:-ailit}
       REVEAL_ANSWERS: ${REVEAL_ANSWERS:-true}
+      CAPTCHA_SECRET: ${CAPTCHA_SECRET:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      SIGNUP_PER_HOUR: ${SIGNUP_PER_HOUR:-20}
+      MIN_CLASS_REPORTING: ${MIN_CLASS_REPORTING:-3}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_SECURE: ${SMTP_SECURE:-true}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      PUBLIC_URL: ${PUBLIC_URL:-}
     depends_on:
       db:
         condition: service_healthy

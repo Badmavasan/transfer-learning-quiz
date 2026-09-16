@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Literacy · Enseignants</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name" data-i18n="t_brand">AI Literacy · Teachers</span>
+    </div>
+    <div class="topbar-right">
+      <a class="topbar-link" href="./" data-i18n="t_back_to_quiz">Go to the quiz</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app teacher-app"><!-- screens injected by teacher.js --></main>
+
+  <footer class="footer">
+    <span data-i18n="t_footer">Teacher area · class results are aggregated · no student is ever identified.</span>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="i18n-teacher.js"></script>
+  <script src="teacher.js"></script>
+</body>
+</html>

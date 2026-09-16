@@ -3,6 +3,7 @@ window.I18N = {
   en: {
     brand: 'AI Literacy',
     footer: 'AI Literacy scientific study · anonymous · mouse & timing recorded · data stored in France and deleted after the study.',
+    footer_teacher: 'Teacher? Open the teacher area →',
 
     // Welcome
     welcome_title: 'How well do you know AI? 🤖',
@@ -18,6 +19,8 @@ window.I18N = {
     welcome_reconnect: 'Reconnect',
     welcome_ack_required: 'Please tick the box to continue.',
     welcome_code_unknown: 'We don\'t recognise that code. Check it and try again.',
+    welcome_class_join: 'You are joining the class “{name}” ({subject}). Your teacher will see the class results — never your name, and never your individual answers.',
+    welcome_class_unknown: 'That class link was not recognised. You can still take the quiz; your answers just will not be attached to a class.',
 
     // Code reveal
     code_title: 'Here is your personal code 🔑',
@@ -106,6 +109,7 @@ window.I18N = {
   fr: {
     brand: 'Littératie IA',
     footer: "Étude scientifique sur la littératie en IA · anonyme · souris et temps enregistrés · données stockées en France et supprimées après l'étude.",
+    footer_teacher: 'Enseignant ? Accéder à l’espace enseignant →',
 
     welcome_title: "Connaissez-vous l'IA ? 🤖",
     welcome_lead: "Un petit quiz amusant sur l'intelligence artificielle (IA) — découvrez votre profil à la fin !",
@@ -120,6 +124,8 @@ window.I18N = {
     welcome_reconnect: 'Se reconnecter',
     welcome_ack_required: 'Veuillez cocher la case pour continuer.',
     welcome_code_unknown: 'Ce code est introuvable. Vérifiez-le et réessayez.',
+    welcome_class_join: "Vous rejoignez la classe « {name} » ({subject}). Votre enseignant verra les résultats de la classe — jamais votre nom, ni vos réponses individuelles.",
+    welcome_class_unknown: "Ce lien de classe n'a pas été reconnu. Vous pouvez tout de même répondre au quiz ; vos réponses ne seront simplement rattachées à aucune classe.",
 
     code_title: 'Voici votre code personnel 🔑',
     code_lead: "Notez-le ! Il vous permet de faire une pause et de revenir plus tard, ou de revoir votre profil.",

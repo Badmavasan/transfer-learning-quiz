@@ -6,6 +6,9 @@ const App = {
   code: null,
   bootstrap: null,       // { rubrics, rubricOrder, questions }
   info: null,
+  classCode: null,      // set when arriving through a teacher's class link
+  klass: null,         // { code, name, subject } once the link is confirmed
+  classUnknown: false, // link carried a code the server does not know
   completed: false,     // quiz finished: no further writes are accepted
   infoDraft: null,      // in-progress "about you" answers (survives re-renders)
   answers: {},           // questionId -> "A".."D"
@@ -113,6 +116,19 @@ function applyLangButtons() {
 
 const CONTACT_EMAIL = 'badmavasan.kirouchenassamy@lip6.fr';
 
+// Arriving through a class link: say which class, so nobody wonders why their
+// teacher will see their results. An unrecognised code is called out rather
+// than silently ignored — the quiz still works, it just counts as independent.
+function classBanner() {
+  if (App.klass) {
+    return `<p class="class-banner">${esc(t('welcome_class_join')
+      .replace('{name}', App.klass.name)
+      .replace('{subject}', App.klass.subject))}</p>`;
+  }
+  if (App.classUnknown) return `<p class="class-banner bad">${esc(t('welcome_class_unknown'))}</p>`;
+  return '';
+}
+
 function screenWelcome(errKey) {
   const privacyHtml = esc(t('welcome_privacy'))
     .replace('{email}', `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`);
@@ -120,6 +136,7 @@ function screenWelcome(errKey) {
     <section class="card welcome">
       <h1 class="hero-title">${esc(t('welcome_title'))}</h1>
       <p class="lead">${esc(t('welcome_lead'))}</p>
+      ${classBanner()}
       <div class="desc">
         <p>${esc(t('welcome_desc_1'))}</p>
         <p>${esc(t('welcome_desc_2'))}</p>
@@ -145,7 +162,10 @@ function screenWelcome(errKey) {
 
   document.getElementById('start').onclick = async () => {
     if (!document.getElementById('ack').checked) return screenWelcome('welcome_ack_required');
-    const { ok, data } = await api('/api/register', { method: 'POST', body: JSON.stringify({ acknowledged: true, lang: App.lang }) });
+    const { ok, data } = await api('/api/register', {
+      method: 'POST',
+      body: JSON.stringify({ acknowledged: true, lang: App.lang, classCode: App.classCode }),
+    });
     if (ok && data.code) { App.code = data.code; screenCode(); }
   };
 
@@ -661,9 +681,18 @@ screenResult = function (data) { App._lastResult = data; _origScreenResult(data)
 // ================================================================ boot
 document.querySelectorAll('.lang-btn').forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
 
+// ?c=ABCD1234 in the URL is a teacher's class link.
+async function resolveClassLink() {
+  const code = (new URLSearchParams(location.search).get('c') || '').trim().toUpperCase();
+  if (!/^[A-Z0-9]{4,16}$/.test(code)) return;
+  const { ok, data } = await api(`/api/class/${encodeURIComponent(code)}`);
+  if (ok && data.class) { App.classCode = data.class.code; App.klass = data.class; }
+  else { App.classUnknown = true; }
+}
+
 (async function init() {
   applyLangButtons();
-  const { data } = await api('/api/bootstrap');
+  const [{ data }] = await Promise.all([api('/api/bootstrap'), resolveClassLink()]);
   App.bootstrap = data;
   screenWelcome();
 })();
