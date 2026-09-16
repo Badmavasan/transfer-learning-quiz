@@ -8,3 +8,8 @@ Dockerfile*
 docker-compose.yml
 README.md
 *.xlsx
+*.pdf
+*.docx
+.env.*
+.idea
+.vscode

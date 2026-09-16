@@ -7,10 +7,10 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install --omit=dev
 
-# App source.
-COPY server.js questions.js profiles.json ./
-COPY storage ./storage
-COPY public ./public
+# App source. Copy everything .dockerignore allows rather than listing files:
+# a hand-maintained list silently drops newly added modules and the container
+# then fails to start.
+COPY . .
 
 ENV NODE_ENV=production
 ENV PORT=3000
