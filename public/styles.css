@@ -83,7 +83,15 @@ h3 { margin: 0 0 12px; }
 .desc .hook { color: var(--accent-3); font-weight: 600; }
 .desc .privacy { font-size: 13px; color: #324a5e; background: rgba(27,161,179,.09); border: 1px solid rgba(27,161,179,.30); border-radius: 10px; padding: 10px 14px; }
 .desc .privacy a { color: var(--accent-3); font-weight: 600; }
-.ack { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: 15px; margin-bottom: 16px; }
+.consent { background: var(--bg-2); border: 1px solid var(--card-border); border-radius: 14px;
+  padding: 16px 18px 8px; margin-bottom: 18px; }
+.consent-title { margin: 0 0 12px; font-weight: 700; font-size: 14.5px; }
+.consent-minor { margin: 4px 0 10px; font-size: 12.5px; color: var(--muted); }
+.consent-minor a { color: var(--accent-3); font-weight: 600; }
+.ack { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: 14.5px; margin-bottom: 12px;
+  border-radius: 10px; padding: 6px 8px; margin-left: -8px; margin-right: -8px; transition: background .15s, box-shadow .15s; }
+.ack:hover { background: rgba(22, 104, 167, .06); }
+.ack.missing { background: rgba(216, 67, 79, .09); box-shadow: inset 0 0 0 1px rgba(216, 67, 79, .35); }
 .ack input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: 0 0 auto; }
 
 .divider { display: flex; align-items: center; text-align: center; color: var(--muted); margin: 26px 0 16px; font-size: 13px; }
@@ -343,6 +351,7 @@ select option { background: #fff; color: var(--ink); }
   .topbar .brand { flex: 1 0 100%; }
   .topbar-right { width: 100%; justify-content: space-between; }
   .grid2, .rubric-grid { grid-template-columns: 1fr; }
+  .reconnect { flex-direction: column; }
   .choices.inline { flex-direction: column; }
   /* stacked: flex-basis would otherwise become a 120px row height */
   .choices.inline .choice { flex: 0 0 auto; justify-content: flex-start; text-align: left; }

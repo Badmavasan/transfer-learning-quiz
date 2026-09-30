@@ -214,7 +214,16 @@ async function handleApi(req, res, pathname) {
 
   if (pathname === '/api/register' && req.method === 'POST') {
     const body = await readBody(req);
-    if (!body.acknowledged) return sendJSON(res, 400, { error: 'must_acknowledge' });
+    // All four statements must be agreed to, and the record keeps what was
+    // agreed, when, and in which language it was shown. A consent you cannot
+    // evidence afterwards is not much of a consent.
+    const CONSENT_KEYS = ['age', 'read', 'data', 'free'];
+    const given = body.consent && typeof body.consent === 'object' ? body.consent : {};
+    if (!body.acknowledged || !CONSENT_KEYS.every((k) => given[k] === true)) {
+      return sendJSON(res, 400, { error: 'must_acknowledge' });
+    }
+    const consent = { at: new Date().toISOString(), lang: body.lang === 'fr' ? 'fr' : 'en' };
+    for (const k of CONSENT_KEYS) consent[k] = true;
     const code = await uniqueCode();
     // A participant arriving through a class link is attached to that class.
     // An unknown code is dropped rather than refused: a broken link should never
@@ -229,7 +238,7 @@ async function handleApi(req, res, pathname) {
       info: null,
       answers: {}, mouse: {}, timing: {},
       completedAt: null, profileKey: null, score: null,
-      classCode,
+      classCode, consent,
     };
     await store.register(p);
     return sendJSON(res, 200, { code, classCode });

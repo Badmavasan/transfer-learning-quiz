@@ -6,6 +6,7 @@ const App = {
   code: null,
   bootstrap: null,       // { rubrics, rubricOrder, questions }
   info: null,
+  consent: { age: false, read: false, data: false, free: false },  // the four ticks on the welcome screen
   classCode: null,      // set when arriving through a teacher's class link
   klass: null,         // { code, name, subject } once the link is confirmed
   classUnknown: false, // link carried a code the server does not know
@@ -129,9 +130,14 @@ function classBanner() {
   return '';
 }
 
+// The four statements a participant has to agree to. Each is separate so the
+// record shows exactly what was agreed, rather than one undifferentiated tick.
+const CONSENTS = ['age', 'read', 'data', 'free'];
+
 function screenWelcome(errKey) {
-  const privacyHtml = esc(t('welcome_privacy'))
-    .replace('{email}', `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`);
+  const mailLink = `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`;
+  const privacyHtml = esc(t('welcome_privacy')).replace('{email}', mailLink);
+  const minorNoteHtml = esc(t('welcome_ack_minor')).replace('{email}', mailLink);
   render(`
     <section class="card welcome">
       <h1 class="hero-title">${esc(t('welcome_title'))}</h1>
@@ -144,10 +150,15 @@ function screenWelcome(errKey) {
         <p class="hook">${esc(t('welcome_desc_3'))}</p>
       </div>
 
-      <label class="ack">
-        <input type="checkbox" id="ack" />
-        <span>${esc(t('welcome_ack'))}</span>
-      </label>
+      <div class="consent">
+        <p class="consent-title">${esc(t('welcome_ack_title'))}</p>
+        ${CONSENTS.map((k) => `
+          <label class="ack ${errKey && !App.consent[k] ? 'missing' : ''}">
+            <input type="checkbox" data-ack="${k}" ${App.consent[k] ? 'checked' : ''} />
+            <span>${esc(t('welcome_ack_' + k))}</span>
+          </label>`).join('')}
+        <p class="consent-minor">${minorNoteHtml}</p>
+      </div>
       ${errKey ? `<p class="err">${esc(t(errKey))}</p>` : ''}
       <button class="btn primary big" id="start">${esc(t('welcome_start'))}</button>
 
@@ -160,11 +171,24 @@ function screenWelcome(errKey) {
     </section>
   `);
 
+  document.querySelectorAll('[data-ack]').forEach((box) => {
+    box.onchange = () => {
+      App.consent[box.dataset.ack] = box.checked;
+      box.parentElement.classList.toggle('missing', !box.checked && box.parentElement.classList.contains('missing'));
+    };
+  });
+
   document.getElementById('start').onclick = async () => {
-    if (!document.getElementById('ack').checked) return screenWelcome('welcome_ack_required');
+    if (!CONSENTS.every((k) => App.consent[k])) return screenWelcome('welcome_ack_required');
     const { ok, data } = await api('/api/register', {
       method: 'POST',
-      body: JSON.stringify({ acknowledged: true, lang: App.lang, classCode: App.classCode }),
+      body: JSON.stringify({
+        acknowledged: true,
+        // Sent individually so the stored record says what was agreed to.
+        consent: Object.assign({}, App.consent),
+        lang: App.lang,
+        classCode: App.classCode,
+      }),
     });
     if (ok && data.code) { App.code = data.code; screenCode(); }
   };

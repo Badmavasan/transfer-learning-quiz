@@ -16,6 +16,9 @@ logs/
 .env.local
 .env.*.local
 
+# Local session notes / conversation logs (never committed)
+.conversations/
+
 # Editor / OS
 .idea/
 .vscode/

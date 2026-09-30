@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS classes (
 -- participants leave it NULL, which is why there is no foreign key here.
 ALTER TABLE participants ADD COLUMN IF NOT EXISTS class_code TEXT;
 ALTER TABLE teachers ADD COLUMN IF NOT EXISTS email_verified BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE participants ADD COLUMN IF NOT EXISTS consent JSONB;
 CREATE INDEX IF NOT EXISTS participants_class_code_idx ON participants (class_code);
 CREATE INDEX IF NOT EXISTS classes_teacher_idx ON classes (teacher_id);
 CREATE INDEX IF NOT EXISTS teacher_sessions_expiry_idx ON teacher_sessions (expires_at);
@@ -124,16 +125,18 @@ async function read(code) {
     profileKey: row.profile_key,
     score: row.score,
     classCode: row.class_code || null,
+    consent: row.consent || null,
   };
 }
 
 async function register(o) {
   await pool.query(
-    `INSERT INTO participants (code, created_at, lang, step, info, completed_at, profile_key, score, class_code)
-     VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::jsonb, $9)`,
+    `INSERT INTO participants (code, created_at, lang, step, info, completed_at, profile_key, score, class_code, consent)
+     VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::jsonb, $9, $10::jsonb)`,
     [up(o.code), o.createdAt, o.lang, o.step,
      o.info ? JSON.stringify(o.info) : null, o.completedAt,
-     o.profileKey, o.score ? JSON.stringify(o.score) : null, o.classCode || null],
+     o.profileKey, o.score ? JSON.stringify(o.score) : null, o.classCode || null,
+     o.consent ? JSON.stringify(o.consent) : null],
   );
 }
 
