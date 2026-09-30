@@ -6,7 +6,7 @@ const App = {
   code: null,
   bootstrap: null,       // { rubrics, rubricOrder, questions }
   info: null,
-  consent: { age: false, read: false, data: false, free: false },  // the four ticks on the welcome screen
+  consent: { age_data: false, free: false },   // the two ticks on the welcome screen
   classCode: null,      // set when arriving through a teacher's class link
   klass: null,         // { code, name, subject } once the link is confirmed
   classUnknown: false, // link carried a code the server does not know
@@ -130,9 +130,9 @@ function classBanner() {
   return '';
 }
 
-// The four statements a participant has to agree to. Each is separate so the
-// record shows exactly what was agreed, rather than one undifferentiated tick.
-const CONSENTS = ['age', 'read', 'data', 'free'];
+// The two statements a participant has to agree to. Kept separate so the stored
+// record shows what was agreed, rather than one undifferentiated tick.
+const CONSENTS = ['age_data', 'free'];
 
 function screenWelcome(errKey) {
   const mailLink = `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`;

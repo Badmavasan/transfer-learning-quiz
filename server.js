@@ -214,10 +214,10 @@ async function handleApi(req, res, pathname) {
 
   if (pathname === '/api/register' && req.method === 'POST') {
     const body = await readBody(req);
-    // All four statements must be agreed to, and the record keeps what was
-    // agreed, when, and in which language it was shown. A consent you cannot
-    // evidence afterwards is not much of a consent.
-    const CONSENT_KEYS = ['age', 'read', 'data', 'free'];
+    // Both statements must be agreed to, and the record keeps what was agreed,
+    // when, and in which language it was shown. A consent you cannot evidence
+    // afterwards is not much of a consent.
+    const CONSENT_KEYS = ['age_data', 'free'];
     const given = body.consent && typeof body.consent === 'object' ? body.consent : {};
     if (!body.acknowledged || !CONSENT_KEYS.every((k) => given[k] === true)) {
       return sendJSON(res, 400, { error: 'must_acknowledge' });
