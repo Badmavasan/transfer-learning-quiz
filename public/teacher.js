@@ -234,6 +234,7 @@ function screenAuth(errText) {
         <input type="text" id="lyceeSearch" autocomplete="off" placeholder="${esc(t('t_lycee_search_ph'))}" value="${esc(T.lyceeQuery)}" />
         <div class="combo" id="lyceeResults" role="listbox">${lyceeOptions()}</div>`}
       <small class="muted">${esc(t('t_lycee_hint'))}</small>
+      <small class="muted">${esc(t('t_lycee_absent'))}</small>
     </div>`;
 
   render(`

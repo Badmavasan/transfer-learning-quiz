@@ -337,16 +337,20 @@ async function handleApi(req, res, pathname) {
 
     const subjects = String(body.subjects || '').trim();
     if (!subjects) return sendJSON(res, 400, { error: 'subjects_required' });
+    // The establishment is optional: the directory only lists lycées, so a
+    // collège or university teacher must be able to sign up without one, and
+    // anyone whose school is missing can type it in free text instead.
     const affiliationType = body.affiliationType === 'lycee' ? 'lycee' : 'other';
-    let affiliation = String(body.affiliation || '').trim();
+    let affiliation = String(body.affiliation || '').trim().slice(0, 200);
     let lyceeUai = null;
     if (affiliationType === 'lycee') {
       const found = LYCEES.find((l) => l.uai === String(body.lyceeUai || ''));
-      if (!found) return sendJSON(res, 400, { error: 'lycee_required' });
-      lyceeUai = found.uai;
-      affiliation = `${found.nom}, ${found.commune} (${found.dep})`;
-    } else if (!affiliation) {
-      return sendJSON(res, 400, { error: 'affiliation_required' });
+      if (found) {
+        lyceeUai = found.uai;
+        affiliation = `${found.nom}, ${found.commune} (${found.dep})`;
+      } else {
+        affiliation = '';   // picked the directory but chose nothing
+      }
     }
 
     if (await store.findTeacherByEmail(email)) return sendJSON(res, 409, { error: 'email_taken' });

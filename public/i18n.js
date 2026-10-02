@@ -4,6 +4,7 @@ window.I18N = {
     brand: 'AI Literacy',
     footer: 'AI Literacy scientific study · anonymous · mouse & timing recorded · data stored in France and deleted after the study.',
     footer_teacher: 'Teacher? Open the teacher area →',
+    nav_teacher: 'Teacher area →',
 
     // Welcome
     welcome_title: 'How well do you know AI? 🤖',
@@ -113,6 +114,7 @@ window.I18N = {
     brand: 'Littératie IA',
     footer: "Étude scientifique sur la littératie en IA · anonyme · souris et temps enregistrés · données stockées en France et supprimées après l'étude.",
     footer_teacher: 'Enseignant ? Accéder à l’espace enseignant →',
+    nav_teacher: 'Espace enseignant →',
 
     welcome_title: "Connaissez-vous l'IA ? 🤖",
     welcome_lead: "Un petit quiz amusant sur l'intelligence artificielle (IA). Découvrez votre profil à la fin !",

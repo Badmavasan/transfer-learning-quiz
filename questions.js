@@ -139,14 +139,14 @@ const QUESTIONS = [
       { key: 'A', en: 'Giving the AI information about your level.', fr: "Fournir à l'IA des informations sur votre niveau." },
       { key: 'B', en: 'Asking the AI to include specific concepts or knowledge.', fr: "Demander à l'IA d'inclure certains concepts/savoirs en particulier." },
       { key: 'C', en: 'Giving the AI your entire course.', fr: "Fournir à l'IA votre cours entier." },
-      { key: 'D', en: 'Entering a very brief description of the task and not describing the technical concepts, so as not to exceed the context window (the maximum amount of information an AI can hold on to within a conversation).', fr: "Renseigner une description très succincte de la tâche et ne pas fournir de description des concepts techniques pour ne pas dépasser la fenêtre de contexte (quantité maximale d'informations qu'une IA peut retenir dans la conversation)." },
+      { key: 'D', en: 'Describing what you need in very few words, so as not to exceed what the AI can hold on to from the conversation.', fr: "Décrire à l'IA votre besoin en très peu de mots, pour ne pas dépasser ce que l'IA peut retenir de la conversation." },
     ],
   },
   {
     id: 'q12', rubric: 'technique', difficulty: 2, correct: 'B',
     q: {
-      en: 'Your school built a chatbot to answer various questions, but it regularly gives unsuitable information about timetables. What is the best strategy to fix this?',
-      fr: "Votre établissement scolaire a développé un chatbot qui répond à diverses questions, mais il donne régulièrement des informations inadaptées par rapport aux emplois du temps. Quelle est la meilleure stratégie pour résoudre ce problème ?",
+      en: 'Your school built a chatbot to answer various questions, but it regularly gives unsuitable information about timetables. What is the best strategy to improve the chatbot?',
+      fr: "Votre établissement scolaire a développé un chatbot qui répond à diverses questions, mais il donne régulièrement des informations inadaptées par rapport aux emplois du temps. Quelle est la meilleure stratégie pour améliorer le chatbot ?",
     },
     options: [
       { key: 'A', en: 'Set up a tool with which students can flag this unsuitable information when it appears.', fr: "Mettre en place un outil avec lequel les étudiants pourront signaler ces informations inadaptées lorsqu'elles se manifestent." },
@@ -283,7 +283,7 @@ const QUESTIONS = [
     options: [
       { key: 'A', en: 'True, as this information is encrypted using sophisticated algorithms during transmission.', fr: "Vrai, puisque ces informations sont cryptées grâce à des algorithmes sophistiqués lors de la transmission." },
       { key: 'B', en: 'True, as generative AI tools are black-box systems and cannot output personal information even if trained on it.', fr: "Vrai, puisque les IA génératives fonctionnent comme des boîtes noires qui ne peuvent pas générer des informations personnelles même si elles sont entraînées dessus." },
-      { key: 'C', en: 'False, as generative AI tools train on unencrypted data and can output private information due to their probabilistic nature.', fr: "Faux, puisque les IA génératives sont entraînées sur des données non cryptées et peuvent les générer en réponse grâce à leur nature probabiliste." },
+      { key: 'C', en: 'False, as generative AI tools train on unencrypted data and can surface that information in their answers.', fr: "Faux, puisque les IA génératives sont entraînées sur des données non cryptées et peuvent les faire apparaître en réponse." },
       { key: 'D', en: 'False, as advancements in quantum computing can easily decipher the encrypted data.', fr: "Faux, puisque les avancées concernant les ordinateurs quantiques peuvent facilement décrypter des données cryptées." },
     ],
   },
